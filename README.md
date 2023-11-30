@@ -11,18 +11,18 @@ root/
  │    │    └── ...
  │    └── empirical/
  │         ├── raw/
- │         ├── accidents/
- │         │    ├── holidays_2022.csv
  │         │    ├── taiwan_village_polygons/
- │         │    └── traffic_network/             
+ │         │    ├── traffic_network/
+ │         │    ├── accidents/
+ │         │    └── holidays_2022.csv
  │         └── processed/
- │              ├── filtered_accidents.csv
  │              ├── study_area_polygons/
- │              └── study_area_network/            
+ │              ├── study_area_network/
+ │              └── filtered_accidents.csv            
  │
  ├── src/
  │    ├── simulation.R
- │    ├── data_processings.R
+ │    ├── data_processing.R
  │    ├── clustering_algorithms/
  │    │    ├── proposed_algorithm.R
  │    │    ├── stkde.R
@@ -56,13 +56,13 @@ root/
  │    │         └── stdbscan/
  │    │              └── ...
  │    │
- │    └── sensitivity_analysis.R
+ │    └── sensitivity_analysis/
  │         └── empirical_data/
  │              └── proposed_algorithm/
  │                   ├── generate_cluster_results.R
  │                   └── generate_cluster_animation.R
  │
- ├── output/
+ ├── outputs/
  │    ├── descriptive_statistics/
  │    │    ├── simulated_data/
  │    │    │    └── 3d_plot/
