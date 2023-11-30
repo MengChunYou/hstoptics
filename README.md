@@ -16,9 +16,9 @@ root/
  │         │    ├── accidents/
  │         │    └── holidays_2022.csv
  │         └── processed/
- │              ├── study_area_polygons/
- │              ├── study_area_network/
- │              └── filtered_accidents.csv            
+ │              ├── study_area_polygons.RData
+ │              ├── study_area_network.RData
+ │              └── filtered_accidents_points.RData
  │
  ├── src/
  │    ├── simulation.R
