@@ -112,8 +112,8 @@ root/
  │                        └── ...
  │
  ├── reports/
- │   ├── report.pdf
- │   └── presentation.pdf
+ │    ├── report.pdf
+ │    └── presentation.pdf
  │
  ├── main_script.R
  ├── README.md
