@@ -23,20 +23,20 @@ root/
  ├── src/
  │    ├── simulation.R
  │    ├── data_processing.R
- │    ├── clustering_algorithms/
- │    │    ├── proposed_algorithm.R
- │    │    ├── stkde.R
- │    │    ├── tnkde.R                      
- │    │    └── stdbscan.R
- │    │ 
  │    ├── descriptive_statistics/
  │    │    ├── simulated_data/
  │    │    │    └── generate_3d_plots.R
  │    │    │
  │    │    └── empirical_data/
  │    │         └── filtered_data_visualization.R
+ │    │ 
+ │    ├── clustering_algorithms/
+ │    │    ├── proposed_algorithm.R
+ │    │    ├── stkde.R
+ │    │    ├── tnkde.R                      
+ │    │    └── stdbscan.R
  │    │
- │    ├── clustering/
+ │    ├── performing_clustering/
  │    │    ├── simulated_data/
  │    │    │    └── proposed_algorithm/
  │    │    │         ├── generate_cluster_results.R
