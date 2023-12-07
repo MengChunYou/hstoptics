@@ -34,13 +34,16 @@ accidents <- accidents_sf %>%
   tm_dots(col = "blue", alpha = 0.01, size = 0.005)
 
 #### Open a PNG device for graphics output
-png("outputs/descriptive_statistics/empirical_data/processed/filtered_accidents_map.png")
+open_png("outputs/descriptive_statistics/empirical_data/processed/filtered_accidents_map.png")
 
 #### Create Plot
 village + town + county + accidents + 
-  tm_layout(frame = T, fontfamily = "JhengHei") +
+  tm_layout(frame = F, fontfamily = "JhengHei",
+            legend.text.size = 1.5,
+            legend.title.size = 2,
+            legend.title.fontface = "bold") +
   tm_add_legend("symbol",
-                col = "blue", alpha = 0.2, size = 0.3,
+                col = "blue", alpha = 0.2, size = 0.5,
                 border.alpha = 0,
                 labels = c("交通事故點位"),
                 title = "圖例", ) +
@@ -52,15 +55,20 @@ village + town + county + accidents +
 dev.off()
 
 ## Filtered accidents time series
+
+#### Open a PNG device for graphics output
+open_png("outputs/descriptive_statistics/empirical_data/processed/filtered_accidents_time_series.png")
+
+#### Create Plot
 accidents_sf %>% st_drop_geometry() %>% 
-  group_by(DoW, Hour) %>% 
-  summarize(`事故數量` = length(`發生日期時間`)) %>% View()
-  ggplot(aes(x = hour, y = `事故數量`))+
-  geom_line(col = "#FFC000", lwd = 1)+
-  facet_grid(`平假日` ~ `天候優劣`) + 
-  labs(x="一日內時段", y="事故數量") +
-  theme(text = element_text(family = "JhengHei"),
-        panel.background = element_rect(fill = "white", colour = "#595959"),
+  group_by(`星期`, `時`) %>% 
+  summarize(`事故數量` = length(`發生日期時間`)) %>% 
+  ggplot(aes(x = `時`, y = `事故數量`))+
+  geom_line(col = "blue", lwd = 1, alpha = 0.4) +
+  facet_wrap(. ~ `星期`, nrow = 5, strip.position="right") + 
+  labs(x = "一日內時段", y = "事故數量 (筆)") + theme_bw() +
+  theme(text = element_text(family = "JhengHei", size = 20),
         plot.title = element_text(hjust = 0.5, face = "bold"))
 
-png("outputs/descriptive_statistics/empirical_data/filtered_accidents_time_series.png")
+#### Close the PNG device
+dev.off()

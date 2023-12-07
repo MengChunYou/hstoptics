@@ -14,7 +14,7 @@ for (ii in 1:20) {
     ))
   
   # Open a PNG device for graphics output
-  png(paste(
+  open_png(paste(
     "outputs/descriptive_statistics/simulated_data/3d_plot/",
     "feature_combination_",
     ii,
