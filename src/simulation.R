@@ -1,11 +1,14 @@
 # simulation.R
 
+library(dplyr)
+library(MASS)
+
 wirte_simulated_data = function(simulated_data, file_order){
   # This is a function to write simulated data
   write.csv( 
     simulated_data, 
     file = paste(
-      "../data/simulated/feature_combination_",
+      "data/simulated/feature_combination_",
       file_order,
       ".csv",
       sep = ""
