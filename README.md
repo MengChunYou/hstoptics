@@ -21,6 +21,7 @@ root/
  │              └── filtered_accidents_points.RData
  │
  ├── src/
+ │    ├── common_functions.R
  │    ├── simulation.R
  │    ├── data_processing.R
  │    ├── descriptive_statistics/

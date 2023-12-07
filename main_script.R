@@ -3,6 +3,8 @@
 # Set working directory to source file location
 setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 
+source("src/common_functions.R")
+
 # 1: simulation
 source("src/simulation.R")
 
