@@ -108,7 +108,8 @@ accidents_sf <- accidents_sf %>%
 
 ### Exclude accidents that occurred on compensatory workday
 accidents_sf <- accidents_sf %>%
-  filter(`星期` != "週六")
+  filter(`星期` != "週六") %>% 
+  mutate(`星期` = factor(`星期`, levels = c("週一", "週二", "週三", "週四", "週五")))
 message(paste("number of accidents:", nrow(accidents_sf)))
 
 ## Save the filtered points
