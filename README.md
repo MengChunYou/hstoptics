@@ -73,7 +73,7 @@ root/
  │    │    └── empirical_data/
  │    │         └── processed/
  │    │              ├── filtered_accidents_map.png
- │    │              └── filtered_accidents_timeseries.png
+ │    │              └── filtered_accidents_time_series.png
  │    │
  │    ├── clustering_results/
  │    │    ├── simulated_data/

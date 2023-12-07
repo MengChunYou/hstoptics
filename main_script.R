@@ -1,5 +1,8 @@
 # main_script.R
 
+# Set working directory to source file location
+setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+
 # 1: simulation
 source("src/simulation.R")
 
