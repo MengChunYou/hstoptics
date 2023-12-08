@@ -102,15 +102,27 @@ accidents_sf <- accidents_sf %>%
 
 ## Add day of week and hour 
 accidents_sf <- accidents_sf %>%
-  mutate(`時` = as.numeric(format(`發生日期時間`, "%H"))) %>% 
-  mutate(`星期` = format(`發生日期時間`, "%a")) %>% 
-  mutate(`星期` = factor(`星期`, levels = c("週一", "週二", "週三", "週四", "週五", "週六")))
+  mutate(`時` = as.numeric(format(`發生日期時間`, "%H")), .before = geometry) %>% 
+  mutate(`星期` = format(`發生日期時間`, "%a"), .before = geometry) %>% 
+  mutate(`星期時間` = paste(`星期`, `時`, "時"), .before = geometry)
 
 ### Exclude accidents that occurred on compensatory workday
+weekday_levels <- c("週一", "週二", "週三", "週四", "週五")
+Weekday_hour_levels <- 
+  paste(rep(c("週一", "週二", "週三", "週四", "週五"), each = 24),
+        rep(c(0:23), times = 5), 
+        "時")
 accidents_sf <- accidents_sf %>%
   filter(`星期` != "週六") %>% 
-  mutate(`星期` = factor(`星期`, levels = c("週一", "週二", "週三", "週四", "週五")))
+  mutate(`星期` = factor(`星期`, levels = weekday_levels)) %>% 
+  mutate(`星期時間` = factor(`星期時間`, levels = Weekday_hour_levels))
 message(paste("number of accidents:", nrow(accidents_sf)))
+
+## Extract columns labeled x, y, and t from data
+accidents_sf <- accidents_sf %>% 
+  mutate(x = st_coordinates(accidents_sf)[,1], .before = `發生日期時間`) %>% 
+  mutate(y = st_coordinates(accidents_sf)[,2], .before = `發生日期時間`) %>% 
+  mutate(t = as.numeric(`星期時間`), .before = `發生日期時間`)
 
 ## Save the filtered points
 save(accidents_sf, 
