@@ -39,9 +39,18 @@ root/
  │    │
  │    ├── performing_clustering/
  │    │    ├── simulated_data/
- │    │    │    └── proposed_algorithm/
- │    │    │         ├── generate_cluster_results.R
- │    │    │         └── generate_cluster_3d_plot.R
+ │    │    │    ├── proposed_algorithm/
+ │    │    │    │    ├── generate_cluster_results.R
+ │    │    │    │    └── generate_cluster_animation.R
+ │    │    │    │
+ │    │    │    ├── stkde/
+ │    │    │    │    └── ...
+ │    │    │    │
+ │    │    │    ├── tnkde/                   
+ │    │    │    │    └── ...
+ │    │    │    │
+ │    │    │    └── stdbscan/
+ │    │    │         └── ...
  │    │    │
  │    │    └── empirical_data/
  │    │         ├── proposed_algorithm/
