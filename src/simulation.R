@@ -47,50 +47,64 @@ wirte_simulated_data(simulated_data, 1)
 
 ### One Linear Structure
 
+set.seed(123)
+
+line_length <- 3
+
+simulated_data <- data.frame(
+  x = rnorm(n_points / 2, mean = 0, sd = 0.5),
+  y = line_length * rnorm(n_points / 2),
+  t = rnorm(n_points / 2)
+)
+
 wirte_simulated_data(simulated_data, 2)
 
 ### One Cylinder
 
-# 生成虛擬資料
 set.seed(123)
-x <- rnorm(n_points)
-y <- rnorm(n_points)
-t <- seq(0, 2 * pi, length.out = n_points)
 
-# 設定圓筒型的半徑和高度
-radius <- 1.5
-height <- 2
+z <- seq(0, 2 * pi, length.out = n_points)
+radius <- 4
+noise <- rnorm(n_points, mean = 0, sd = 0.5)
 
-# 將資料轉換成圓筒型
-simulated_data <- data_frame(
-  x = radius * cos(t),
-  y = radius * sin(t),
-  t = sample(seq(0, height, length.out = n_points), n_points, T)
+simulated_data <- data.frame(
+  x = (radius + noise) * cos(z) ,
+  y = (radius + noise) * sin(z) ,
+  t = rnorm(n_points, mean = 0, sd = 3)
 )
 
 wirte_simulated_data(simulated_data, 3)
 
 ### One Horizontal Cross Structure
 
-# 生成虛擬資料
 set.seed(123)
-x <- rnorm(n_points)
-y <- rnorm(n_points)
-t <- rnorm(n_points)
 
-# 設定十字體的尺寸
-cross_size <- 2
+cross_size <- 3
 
-# 將資料轉換成橫躺的十字體
 simulated_data <- data.frame(
-  x = c(rep(0, n_points), cross_size * x),
-  y = c(cross_size * y, rep(0, n_points)),
-  t = c(rep(t, each = 2))
+  x = c(rnorm(n_points / 2, mean = 0, sd = 0.5), 
+        cross_size * rnorm(n_points / 2)),
+  y = c(cross_size * rnorm(n_points / 2), 
+        rnorm(n_points / 2, mean = 0, sd = 0.5)),
+  t = rnorm(n_points) * 3
 )
 
 wirte_simulated_data(simulated_data, 4)
 
 ### One Vertical Cross Structure
+
+set.seed(123)
+
+line_length <- 3
+
+simulated_data <- data.frame(
+  x = c(rnorm(n_points / 2, mean = 0, sd = 0.5), 
+        rnorm(n_points / 2, mean = 0, sd = 0.5)),
+  y = c(rnorm(n_points / 2, mean = 0, sd = 0.5), 
+        line_length * rnorm(n_points / 2)),
+  t = c(rnorm(n_points / 2) * 3, 
+        rnorm(n_points / 2) * 1)
+)
 
 wirte_simulated_data(simulated_data, 5)
 
