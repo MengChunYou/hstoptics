@@ -1,6 +1,6 @@
 # generate_3d_plots.R
 
-library(plot3D)
+library(scatterplot3d)     
 
 # Loop through each file
 for (ii in 1:20) {
@@ -23,10 +23,9 @@ for (ii in 1:20) {
   ))
   
   # Create a 3D scatter plot
-  plot3D::scatter3D(
-    simulated_data$x, simulated_data$y, simulated_data$t,  
-    xlab = "c", ylab = "y", zlab = "t",
-    col = "blue", pch = 19, cex = 0.5, theta = 15, phi = 20)
+  scatterplot3d(simulated_data, pch=16, asp = T, color = rgb(0,0,1,0.2), 
+                xlim = c(-5, 5), ylim = c(-5, 5), zlim = c(-5, 5),
+                cex.symbols = 1.5, cex.axis = 1.5, cex.lab = 1.5)
   
   # Close the PNG device
   dev.off()

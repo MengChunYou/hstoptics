@@ -2,9 +2,21 @@
 
 library(dplyr)
 library(MASS)
+library(rgl)
 
 wirte_simulated_data = function(simulated_data, file_order){
+  
   # This is a function to write simulated data
+  
+  # Create a 3D plot when running the script interactively
+  if (interactive()) {
+    simulated_data %>% 
+      plot3d(aspect = F, 
+             xlim = c(-10, 10), 
+             ylim = c(-10, 10), 
+             zlim = c(-10, 10))
+  }
+  
   write.csv( 
     simulated_data, 
     file = paste(
@@ -86,6 +98,19 @@ wirte_simulated_data(simulated_data, 5)
 
 ### Two Ellipsoids
 
+set.seed(123)
+
+simulated_data <- 
+  rbind(
+    mvrnorm(n_points, mu = c(-3, -3, -3), 
+            Sigma = matrix(c(1, 0, 0, 0, 2, 0, 0, 0, 3), ncol = 3)),
+    mvrnorm(n_points, 
+            mu = c(3, 3, 3), 
+            Sigma = matrix(c(3, 0, 0, 0, 1, 0, 0, 0, 2), ncol = 3))
+  ) %>% 
+  as.data.frame() %>% 
+  rename(x = V1, y = V2, t = V3)
+
 wirte_simulated_data(simulated_data, 6)
 
 ### Two Linear Structures
@@ -104,10 +129,24 @@ wirte_simulated_data(simulated_data, 9)
 
 wirte_simulated_data(simulated_data, 10)
 
-
 ## Two Overlapping Faulted Clusters
 
 ### Two Overlapping Faulted Ellipsoids
+
+set.seed(123)
+
+simulated_data <- rbind(
+  data.frame(
+    x = 1 * 3 * (rbeta(n_points, 2, 2) - 0.5), 
+    y = 2 * 3 * (rbeta(n_points, 2, 2) - 0.5), 
+    t = 3 * 3 * (rbeta(n_points, 2, 2) - 0.5)
+  ),
+  data.frame(
+    x = 4 * 3 * (rbeta(n_points, 2, 2) - 0.5), 
+    y = 5 * 3 * (rbeta(n_points, 2, 2) - 0.5), 
+    t = 6 * 3 * (rbeta(n_points, 2, 2) - 0.5)
+  )
+)
 
 wirte_simulated_data(simulated_data, 11)
 
@@ -131,6 +170,19 @@ wirte_simulated_data(simulated_data, 15)
 ## Two Overlapping Smooth Clusters
 
 ### Two Overlapping Smooth Ellipsoids
+
+set.seed(123)
+
+simulated_data <- 
+  rbind(
+    mvrnorm(n_points, mu = c(0, 0, 0), 
+            Sigma = matrix(c(1, 0, 0, 0, 2, 0, 0, 0, 3), ncol = 3)),
+    mvrnorm(n_points, 
+            mu = c(0, 0, 0), 
+            Sigma = matrix(c(7, 0, 0, 0, 8, 0, 0, 0, 9), ncol = 3))
+  ) %>% 
+  as.data.frame() %>% 
+  rename(x = V1, y = V2, t = V3)
 
 wirte_simulated_data(simulated_data, 16)
 
