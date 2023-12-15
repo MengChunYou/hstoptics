@@ -103,7 +103,7 @@ root/
  │    │         │ 
  │    │         └── stdbscan/
  │    │     
- │    └── cluster_plot/ (WIP)
+ │    └── cluster_plots/ (WIP)
  │         ├── simulated_data/
  │         │    ├── feature_combination_1/
  │         │    │    ├── proposed_algorithm/
