@@ -41,11 +41,11 @@ root/
  │         ├── simulated_data/
  │         │    ├── proposed_algorithm/
  │         │    │    ├── generate_cluster_results.R
- │         │    │    └── generate_cluster_animation.R
+ │         │    │    └── generate_cluster_3d_plot.R
  │         │    │
  │         │    ├── stkde/
  │         │    │
- │         │    ├── tnkde/                   
+ │         │    ├── tnkde/
  │         │    │
  │         │    └── stdbscan/
  │         │
@@ -56,7 +56,7 @@ root/
  │              │
  │              ├── stkde/
  │              │
- │              ├── tnkde/                   
+ │              ├── tnkde/
  │              │
  │              └── stdbscan/
  │     
