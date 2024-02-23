@@ -213,18 +213,15 @@ wirte_simulated_data(simulated_data, 10)
 
 set.seed(123)
 
-simulated_data <- rbind(
-  data.frame(
-    x = 1 * 3 * (rbeta(n_points, 2, 2) - 0.5), 
-    y = 2 * 3 * (rbeta(n_points, 2, 2) - 0.5), 
-    t = 3 * 3 * (rbeta(n_points, 2, 2) - 0.5)
-  ),
-  data.frame(
-    x = 4 * 3 * (rbeta(n_points, 2, 2) - 0.5), 
-    y = 5 * 3 * (rbeta(n_points, 2, 2) - 0.5), 
-    t = 6 * 3 * (rbeta(n_points, 2, 2) - 0.5)
+simulated_data <- 
+  rbind(
+    data.frame(x = runif(n_points, min = -1, max = 1),
+               y = runif(n_points, min = -2, max = 2),
+               t = runif(n_points, min = -3, max = 3)),
+    data.frame(x = runif(n_points, min = -4, max = 4),
+               y = runif(n_points, min = -5, max = 5),
+               t = runif(n_points, min = -6, max = 6))
   )
-)
 
 wirte_simulated_data(simulated_data, 11)
 
@@ -260,11 +257,12 @@ set.seed(123)
 
 simulated_data <- 
   rbind(
-    mvrnorm(n_points, mu = c(0, 0, 0), 
+    mvrnorm(n_points, 
+            mu = c(0, 0, 0), 
             Sigma = matrix(c(1, 0, 0, 0, 2, 0, 0, 0, 3), ncol = 3)),
     mvrnorm(n_points, 
             mu = c(0, 0, 0), 
-            Sigma = matrix(c(7, 0, 0, 0, 8, 0, 0, 0, 9), ncol = 3))
+            Sigma = matrix(c(4, 0, 0, 0, 5, 0, 0, 0, 6), ncol = 3))
   ) %>% 
   as.data.frame() %>% 
   rename(x = V1, y = V2, t = V3)
