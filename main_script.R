@@ -24,8 +24,22 @@ source("src/clustering_algorithms/stdbscan.R")
 # 5: performing clustering
 
 ## 5-1: simulated data
+
+### 5-1-1: proposed algorithm
 source("src/performing_clustering/simulated_data/proposed_algorithm/generate_cluster_results.R")
 source("src/performing_clustering/simulated_data/proposed_algorithm/generate_cluster_3d_plot.R")
+
+### 5-1-2: stkde
+source("src/performing_clustering/simulated_data/stkde/generate_cluster_results.R")
+source("src/performing_clustering/simulated_data/stkde/generate_cluster_3d_plot.R")
+
+### 5-1-3: tnkde
+source("src/performing_clustering/simulated_data/tnkde/generate_cluster_results.R")
+source("src/performing_clustering/simulated_data/tnkde/generate_cluster_3d_plot.R")
+
+### 5-1-4: stdbscan
+source("src/performing_clustering/simulated_data/stdbscan/generate_cluster_results.R")
+source("src/performing_clustering/simulated_data/stdbscan/generate_cluster_3d_plot.R")
 
 ## 5-2: empirical data
 
@@ -44,9 +58,5 @@ source("src/performing_clustering/empirical_data/tnkde/generate_cluster_animatio
 ### 5-2-4: stdbscan
 source("src/performing_clustering/empirical_data/stdbscan/generate_cluster_results.R")
 source("src/performing_clustering/empirical_data/stdbscan/generate_cluster_animation.R")
-
-# 6: sensitivity analysis
-source("src/sensitivity_analysis/empirical_data/proposed_algorithm/generate_cluster_results.R")
-source("src/sensitivity_analysis/empirical_data/proposed_algorithm/generate_cluster_animation.R")
 
 # end of main_script.R
