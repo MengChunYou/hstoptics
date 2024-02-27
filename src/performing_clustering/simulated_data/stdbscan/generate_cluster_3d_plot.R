@@ -2,41 +2,70 @@
 
 library(scatterplot3d)  
 
-ii <- "6"
-jj <- "1"
+## generate_stdbscan_cluster_3d_plot function
+generate_stdbscan_cluster_3d_plot = function(
+  combination_order,
+  parameter_order) {
+    simulated_data <- read_cluster_results(
+      algorithm_name = "stdbscan",
+      combination_order = combination_order,
+      parameter_order = parameter_order)
+    plot_color = c(rgb(0.8,0.8,0.8), rgb(0,0,1,0.2), rgb(0,1,0,0.2), rgb(1,0,0,0.2))
+    plot_lim = 10
+    
+    # Add projected points
+    simulated_data_w_projection <- simulated_data %>% 
+      rbind(., simulated_data)
+    simulated_data_w_projection[1:nrow(simulated_data),"t"] <- -0.99 * plot_lim
+    
+    # Open a PNG device for graphics output
+    output_name <- paste(
+      "outputs/cluster_plots/simulated_data/",
+      "feature_combination_",
+      combination_order,
+      "/stdbscan/",
+      "parameter_", parameter_order,
+      "_cluster_3d_plot.png",
+      sep = ""
+    )
+    open_png(output_name)
+    
+    # Create a 3D scatter plot
+    scatterplot3d(simulated_data_w_projection[, 1:3], 
+                  pch = 16, asp = T, 
+                  color = c(rep(rgb(0.8,0.8,0.8,0.2), times = nrow(simulated_data)), 
+                            plot_color[simulated_data$cluster + 1]), 
+                  xlim = c(-1 * plot_lim, plot_lim), 
+                  ylim = c(-1 * plot_lim, plot_lim), 
+                  zlim = c(-1 * plot_lim, plot_lim), 
+                  cex.symbols = 1.5, cex.axis = 1.5, cex.lab = 2)
+    
+    # Close the PNG device
+    dev.off()
+    
+    message(paste("write", output_name))
+}
 
-simulated_data <- read_cluster_results(
-  algorithm_name = "stdbscan",
-  combination_order = ii,
-  parameter_order = jj)
+## generate cluster 3d plot
 
-plot_color = c(rgb(0,0,1,0.2), rgb(0,1,0,0.2), rgb(1,0,0,0.2))
-plot_lim = 10
+## generate cluster results
 
-simulated_data_w_projection <- simulated_data %>% 
-  rbind(., simulated_data)
-simulated_data_w_projection[1:nrow(simulated_data),"t"] <- -0.99 * plot_lim
+### feature_combination_1
+generate_stdbscan_cluster_3d_plot(
+  combination_order = 1,
+  parameter_order = 1)
 
-# Open a PNG device for graphics output
-open_png(paste(
-  "outputs/cluster_plots/simulated_data/",
-  "feature_combination_",
-  ii,
-  "/stdbscan/",
-  "parameter_", jj,
-  "_cluster_3d_plot.png",
-  sep = ""
-))
+### feature_combination_6
+generate_stdbscan_cluster_3d_plot(
+  combination_order = 6,
+  parameter_order = 1)
 
-# Create a 3D scatter plot
-scatterplot3d(simulated_data_w_projection[, 1:3], 
-              pch = 16, asp = T, 
-              color = c(rep(rgb(0.8,0.8,0.8,0.2), times = nrow(simulated_data)), 
-                        plot_color[simulated_data$cluster]), 
-              xlim = c(-1 * plot_lim, plot_lim), 
-              ylim = c(-1 * plot_lim, plot_lim), 
-              zlim = c(-1 * plot_lim, plot_lim), 
-              cex.symbols = 1.5, cex.axis = 1.5, cex.lab = 1.5)
+### feature_combination_11
+generate_stdbscan_cluster_3d_plot(
+  combination_order = 11,
+  parameter_order = 1)
 
-# Close the PNG device
-dev.off()
+### feature_combination_16
+generate_stdbscan_cluster_3d_plot(
+  combination_order = 16,
+  parameter_order = 1)
