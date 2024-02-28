@@ -88,7 +88,7 @@ accidents_sf <- accidents_sf %>%
 accidents_sf <- accidents_sf %>% 
   mutate(`發生日期時間` = paste(`發生日期`, `發生時間`), .before = `事故類別名稱`) %>% 
   mutate(`發生日期時間` = as.POSIXct(`發生日期時間`, format = "%Y%m%d %H%M%OS")) %>% 
-  select(-`發生年度`, -`發生月份`, -`發生日期`, -`發生時間`, -`發生時間修正`)
+  subset(select = -c(`發生年度`, `發生月份`, `發生日期`, `發生時間`, `發生時間修正`))
 
 ## Modify column names
 colnames(accidents_sf) <- colnames(accidents_sf) %>% 
