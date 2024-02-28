@@ -1,5 +1,10 @@
 # main_script.R
 
+# library packages
+library(dplyr)
+library(sf)
+library(tidyr)
+
 # Set working directory to source file location
 setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 

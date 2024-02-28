@@ -1,9 +1,7 @@
 # filter_data_visualization.R
 
-library(sf)
-library(tmap)
-library(dplyr)
 library(ggplot2)
+library(tmap)
 
 # set font family
 windowsFonts(JhengHei = windowsFont(family = "Microsoft JhengHei"))

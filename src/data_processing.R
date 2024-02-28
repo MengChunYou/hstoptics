@@ -1,9 +1,5 @@
 # data_processing.R
 
-library(sf)
-library(dplyr)
-library(tidyr)
-
 # Polygons
 
 ## Read raw SHP data and filter study area polygons 

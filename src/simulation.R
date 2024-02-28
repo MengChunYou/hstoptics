@@ -1,6 +1,5 @@
 # simulation.R
 
-library(dplyr)
 library(MASS)
 library(rgl)
 
