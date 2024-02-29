@@ -1,5 +1,17 @@
 # spatio-temporal-cluster-fault-identification
 
+project description ...
+
+## Table of Contents
+
+- [Project Abstract](#project-abstract)
+- [Repository Structure](#repository-structure)
+- [Required Packages](#required-packages)
+
+## Project Abstract
+
+project abstract ...
+
 ## Repository Structure
 
 ```plaintext
@@ -8,7 +20,10 @@ root/
  │    ├── simulated/ (WIP)
  │    │    ├── feature_combination_1.csv
  │    │    ├── feature_combination_2.csv
- │    │    └── ...
+ │    │    ├── feature_combination_3.csv
+ │    │    ├── feature_combination_4.csv
+ │    │    ├── feature_combination_5.csv
+ │    │    └── feature_combination_6.csv
  │    └── empirical/
  │         ├── raw/
  │         │    ├── taiwan_village_polygons/
@@ -135,10 +150,25 @@ root/
  │
  ├── reports/
  │    ├── report.pdf
- │    └── presentation.pdf
+ │    └── slides.pdf
  │
  ├── main_script.R
  ├── README.md
- ├── requirements.txt
  └── .gitignore
+```
+
+- `reports/`: ...
+
+## Required Packages
+
+- dplyr
+- MASS
+- sf
+- tidyr
+- ggplot2
+
+Download the required packages by running the following command in R:
+
+``` plaintext
+install.packages(c("dplyr", "MASS", "sf", "tidyr", "ggplot2"))
 ```
