@@ -10,8 +10,8 @@ simulated_data <- read.csv(
 hst_optics_result <- hst_optics(
   xyt_df=simulated_data, 
   xyt_colname=c("x", "y", "t"),
-  eps_s = 10,
-  eps_t = 10,
+  eps_s = 5,
+  eps_t = 5,
   min_pts = 180)
 
 # Generate Reachability Plot
@@ -34,25 +34,25 @@ cal_reach_score_diff <- function(hst_optics_result){
 steepness <- hst_optics_result %>% cal_reach_score_diff()
 
 # ## Identify location of faults based on given parameter Xi
-# find_faults <- function(steepness, Xi){
-#   move <- rep(0, times = length(steepness))
-#   move[which(steepness < (-Xi))] <- -1
-#   move[which(steepness>(Xi))] <- 1
-#   return(move)
-# }
-# faults <- find_faults(steepness, 0.2)
+find_faults <- function(steepness, Xi){
+  move <- rep(0, times = length(steepness))
+  move[which(steepness < (-Xi))] <- -1
+  move[which(steepness>(Xi))] <- 1
+  return(move)
+}
+faults <- find_faults(steepness, 0.6)
 
-# my_level = c(0)
-# my_sum = 0
-# for(ii in 1:(nrow(hst_optics_result)-1)){
-#   my_sum = my_sum + faults[ii]
-#   if(hst_optics_result$reach_score[ii+1]==Inf){
-#     my_sum = 0
-#   }
-#   my_level[ii+1] = my_sum
-# }
-# my_level[length(my_level)] = 0 ######################################################################
-# 
+my_level = c(0)
+my_sum = 0
+for(ii in 1:(nrow(hst_optics_result)-1)){
+  my_sum = my_sum + faults[ii]
+  if(hst_optics_result$reach_score[ii+1]==Inf){
+    my_sum = 0
+  }
+  my_level[ii+1] = my_sum
+}
+my_level[length(my_level)] = 0 ######################################################################
+
 # g_level = c()
 # df = data.frame(ID = hst_optics_result$ordered_id[1:length(my_level)])
 # for(jj in (-1:(range(my_level)[1]))){ 

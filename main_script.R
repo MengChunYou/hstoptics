@@ -31,12 +31,12 @@ source("src/clustering_algorithms/stdbscan.R")
 ## 5-1: simulated data
 
 ### 5-1-1: proposed algorithm
-# source("src/performing_clustering/simulated_data/proposed_algorithm/generate_cluster_results.R")
-# source("src/performing_clustering/simulated_data/proposed_algorithm/generate_cluster_3d_plot.R")
+source("src/performing_clustering/simulated_data/proposed_algorithm/generate_cluster_results.R")
+source("src/performing_clustering/simulated_data/proposed_algorithm/generate_cluster_3d_plot.R")
 
 ### 5-1-2: stkde
-source("src/performing_clustering/simulated_data/stkde/generate_cluster_results.R")
-source("src/performing_clustering/simulated_data/stkde/generate_cluster_3d_plot.R")
+# source("src/performing_clustering/simulated_data/stkde/generate_cluster_results.R")
+# source("src/performing_clustering/simulated_data/stkde/generate_cluster_3d_plot.R")
 
 ### 5-1-3: tnkde
 # source("src/performing_clustering/simulated_data/tnkde/generate_cluster_results.R")
