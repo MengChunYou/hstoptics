@@ -55,17 +55,22 @@ generate_stdbscan_cluster_3d_plot(
   combination_order = 1,
   parameter_order = 1)
 
-### feature_combination_6
+### feature_combination_2
 generate_stdbscan_cluster_3d_plot(
-  combination_order = 6,
+  combination_order = 2,
   parameter_order = 1)
 
-### feature_combination_11
+### feature_combination_3
 generate_stdbscan_cluster_3d_plot(
-  combination_order = 11,
+  combination_order = 3,
   parameter_order = 1)
 
-### feature_combination_16
+### feature_combination_4
 generate_stdbscan_cluster_3d_plot(
-  combination_order = 16,
+  combination_order = 4,
+  parameter_order = 1)
+
+### feature_combination_5
+generate_stdbscan_cluster_3d_plot(
+  combination_order = 5,
   parameter_order = 1)

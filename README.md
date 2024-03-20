@@ -22,8 +22,7 @@ root/
  │    │    ├── feature_combination_2.csv
  │    │    ├── feature_combination_3.csv
  │    │    ├── feature_combination_4.csv
- │    │    ├── feature_combination_5.csv
- │    │    └── feature_combination_6.csv
+ │    │    └── feature_combination_5.csv
  │    └── empirical/
  │         ├── raw/
  │         │    ├── taiwan_village_polygons/

@@ -3,7 +3,7 @@
 library(scatterplot3d)     
 
 # Loop through each file
-for (ii in 1:20) {
+for (ii in 1:5) {
   # Read the CSV file
   simulated_data <- 
     read.csv(paste(
