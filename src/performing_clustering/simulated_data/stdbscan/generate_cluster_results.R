@@ -48,27 +48,27 @@ generate_stdbscan_cluster_results(
 ### feature_combination_2
 generate_stdbscan_cluster_results(
   combination_order = 2,
-  eps = 3,
-  eps2 = 3,
-  minpts = 150)
+  eps = 2.5,
+  eps2 = 2.5,
+  minpts = 250)
 
 ### feature_combination_3
 generate_stdbscan_cluster_results(
   combination_order = 3,
-  eps = 3,
-  eps2 = 3,
-  minpts = 150)
+  eps = 2.5,
+  eps2 = 2.5,
+  minpts = 250)
 
 ### feature_combination_4
 generate_stdbscan_cluster_results(
   combination_order = 4,
-  eps = 3,
-  eps2 = 3,
-  minpts = 150)
+  eps = 5,
+  eps2 = 5,
+  minpts = 200)
 
 ### feature_combination_5
 generate_stdbscan_cluster_results(
   combination_order = 5,
-  eps = 3,
-  eps2 = 3,
-  minpts = 150)
+  eps = 4,
+  eps2 = 4,
+  minpts = 200)

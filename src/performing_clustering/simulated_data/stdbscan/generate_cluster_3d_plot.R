@@ -48,8 +48,6 @@ generate_stdbscan_cluster_3d_plot = function(
 
 ## generate cluster 3d plot
 
-## generate cluster results
-
 ### feature_combination_1
 generate_stdbscan_cluster_3d_plot(
   combination_order = 1,
