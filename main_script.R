@@ -21,9 +21,9 @@ source("src/descriptive_statistics/simulated_data/generate_3d_plots.R")
 source("src/descriptive_statistics/empirical_data/filtered_data_visualization.R")
 
 # 4: functions for clustering algorithms
-source("src/clustering_algorithms/proposed_algorithm.R")
-source("src/clustering_algorithms/stkde.R")
-source("src/clustering_algorithms/tnkde.R")
+# source("src/clustering_algorithms/proposed_algorithm.R")
+# source("src/clustering_algorithms/stkde.R")
+# source("src/clustering_algorithms/tnkde.R")
 source("src/clustering_algorithms/stdbscan.R")
 
 # 5: performing clustering
@@ -31,8 +31,8 @@ source("src/clustering_algorithms/stdbscan.R")
 ## 5-1: simulated data
 
 ### 5-1-1: proposed algorithm
-source("src/performing_clustering/simulated_data/proposed_algorithm/generate_cluster_results.R")
-source("src/performing_clustering/simulated_data/proposed_algorithm/generate_cluster_3d_plot.R")
+# source("src/performing_clustering/simulated_data/proposed_algorithm/generate_cluster_results.R")
+# source("src/performing_clustering/simulated_data/proposed_algorithm/generate_cluster_3d_plot.R")
 
 ### 5-1-2: stkde
 # source("src/performing_clustering/simulated_data/stkde/generate_cluster_results.R")

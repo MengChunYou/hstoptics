@@ -30,7 +30,7 @@ for (ii in 1:5) {
   # Create a 3D scatter plot
   scatterplot3d(simulated_data_w_projection, 
                 pch = 16, asp = T, 
-                color = rep(c(rgb(0.8,0.8,0.8,0.2), rgb(0,0,1,0.2)), 
+                color = rep(c(rgb(0.8,0.8,0.8,0.2), rgb(0.3, 0.3, 0.3, 0.2)), 
                               each = nrow(simulated_data)), 
                 xlim = c(-1 * plot_lim, plot_lim), 
                 ylim = c(-1 * plot_lim, plot_lim), 
