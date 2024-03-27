@@ -2,8 +2,8 @@
 
 library(scatterplot3d)
 
-## generate_STOPTICS_cluster_3d_plot function
-generate_stoptics_cluster_3d_plot = function(
+## generate_hst_optics_cluster_3d_plot function
+generate_hst_optics_cluster_3d_plot = function(
     combination_order,
     parameter_order) {
   simulated_data <- read_cluster_results(
@@ -51,26 +51,26 @@ generate_stoptics_cluster_3d_plot = function(
 ## generate cluster 3d plot
 
 ### feature_combination_1
-generate_stoptics_cluster_3d_plot(
+generate_hst_optics_cluster_3d_plot(
   combination_order = 1,
   parameter_order = 1)
 
 ### feature_combination_2
-generate_stoptics_cluster_3d_plot(
+generate_hst_optics_cluster_3d_plot(
   combination_order = 2,
   parameter_order = 1)
 
 ### feature_combination_3
-generate_stoptics_cluster_3d_plot(
+generate_hst_optics_cluster_3d_plot(
   combination_order = 3,
   parameter_order = 1)
 
 ### feature_combination_4
-generate_stoptics_cluster_3d_plot(
+generate_hst_optics_cluster_3d_plot(
   combination_order = 4,
   parameter_order = 1)
 
 ### feature_combination_5
-generate_stoptics_cluster_3d_plot(
+generate_hst_optics_cluster_3d_plot(
   combination_order = 5,
   parameter_order = 1)

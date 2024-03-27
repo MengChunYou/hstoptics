@@ -1,18 +1,22 @@
 # generate_cluster_result.R
 
+combination_order = 3
+eps_s =  3
+eps_t = 3
+min_pts = 300
+
 # Read simulated data
 simulated_data <- read.csv(
   paste(
-    "data/simulated/feature_combination_6.csv", 
+    "data/simulated/feature_combination_", combination_order,".csv", 
     sep = ""))
 
 # Get order and reachability scores
-hst_optics_result <- hst_optics(
-  xyt_df=simulated_data, 
-  xyt_colname=c("x", "y", "t"),
-  eps_s = 5,
-  eps_t = 5,
-  min_pts = 180)
+hst_optics_result = hst_optics(
+    simulated_data, 
+    eps_s = eps_s, 
+    eps_t = eps_t, 
+    min_pts = min_pts)
 
 # Generate Reachability Plot
 generate_reachability_plot = function(hst_optics_result){
@@ -40,7 +44,7 @@ find_faults <- function(steepness, Xi){
   move[which(steepness>(Xi))] <- 1
   return(move)
 }
-faults <- find_faults(steepness, 0.6)
+faults <- find_faults(steepness, 0.7)
 
 my_level = c(0)
 my_sum = 0
@@ -53,19 +57,19 @@ for(ii in 1:(nrow(hst_optics_result)-1)){
 }
 my_level[length(my_level)] = 0 ######################################################################
 
-# g_level = c()
-# df = data.frame(ID = hst_optics_result$ordered_id[1:length(my_level)])
-# for(jj in (-1:(range(my_level)[1]))){ 
-#   print(jj)
-#   my_list = ((cut(x = 1:length(my_level), breaks = which(my_level > jj), ) %>% table)>1 ) %>% 
-#     which %>% names %>% gsub("\\(", "", .) %>% gsub("\\]", "", .) %>%
-#     strsplit(., split = ",")
-#   for(ii in 1:length(my_list)){
-#     print(paste("  ", ii))
-#     g_level = c(g_level, jj)
-#     df = cbind(df, ifelse(c(1:length(my_level)) %in% (as.numeric(my_list[[ii]][1])+1):(as.numeric(my_list[[ii]][2])-1), 1, 0))
-#   }
-# }
-# colnames(df) = c("ordered_id", paste("g", 1:(ncol(df)-1), sep = ""))
-# 
-# simulated_data = cbind(simulated_data, df[order(df$ordered_id),-1])
+g_level = c()
+df = data.frame(ID = hst_optics_result$ordered_id[1:length(my_level)])
+for(jj in (-1:(range(my_level)[1]))){
+  print(jj)
+  my_list = ((cut(x = 1:length(my_level), breaks = which(my_level > jj), ) %>% table)>1 ) %>%
+    which %>% names %>% gsub("\\(", "", .) %>% gsub("\\]", "", .) %>%
+    strsplit(., split = ",")
+  for(ii in 1:length(my_list)){
+    print(paste("  ", ii))
+    g_level = c(g_level, jj)
+    df = cbind(df, ifelse(c(1:length(my_level)) %in% (as.numeric(my_list[[ii]][1])+1):(as.numeric(my_list[[ii]][2])-1), 1, 0))
+  }
+}
+colnames(df) = c("ordered_id", paste("g", 1:(ncol(df)-1), sep = ""))
+
+simulated_data = cbind(simulated_data, df[order(df$ordered_id),-1])
