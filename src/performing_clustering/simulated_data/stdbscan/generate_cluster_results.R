@@ -39,7 +39,7 @@ generate_stdbscan_cluster_results(
   combination_order = 1,
   eps = 1,
   eps2 = 1,
-  min_pts = 3
+  min_pts = 2
 )
 
 ### feature_combination_2
@@ -47,7 +47,7 @@ generate_stdbscan_cluster_results(
   combination_order = 2,
   eps = 1,
   eps2 = 1,
-  min_pts = 3
+  min_pts = 2
 )
 
 ### feature_combination_3
@@ -55,7 +55,7 @@ generate_stdbscan_cluster_results(
   combination_order = 3,
   eps = 1,
   eps2 = 1,
-  min_pts = 3
+  min_pts = 2
 )
 
 ### feature_combination_4
@@ -63,7 +63,7 @@ generate_stdbscan_cluster_results(
   combination_order = 4,
   eps = 1,
   eps2 = 1,
-  min_pts = 3
+  min_pts = 2
 )
 
 ### feature_combination_5
@@ -71,5 +71,5 @@ generate_stdbscan_cluster_results(
   combination_order = 5,
   eps = 1,
   eps2 = 1,
-  min_pts = 3
+  min_pts = 2
 )

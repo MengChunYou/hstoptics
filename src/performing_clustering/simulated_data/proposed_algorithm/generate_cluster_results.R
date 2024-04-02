@@ -138,7 +138,7 @@ generate_hstoptics_cluster_results <- function(
     
     # Create a 3D plot when the script is executed directly
     if (length(commandArgs(trailingOnly = TRUE)) == 0) {
-      plot_cluster_results_3d(cluster_results)
+      plot_cluster_results_3d(simulated_data, cluster_results)
     }
     
     return(cluster_results)
@@ -156,46 +156,46 @@ generate_hstoptics_cluster_results <- function(
 ## generate cluster results
 
 ### feature_combination_1
-generate_hstoptics_cluster_results(
-  combination_order = 1,
-  eps_s = 3,
-  eps_t = 3,
-  min_pts = 150,
-  Xi = 0.5
-)
+# generate_hstoptics_cluster_results(
+#   combination_order = 1,
+#   eps_s = 1,
+#   eps_t = 1,
+#   min_pts = 3,
+#   Xi = 0.5
+# )
 
 ### feature_combination_2
 generate_hstoptics_cluster_results(
   combination_order = 2,
-  eps_s = 2,
-  eps_t = 2,
-  min_pts = 300,
-  Xi = 0.5
+  eps_s = 1,
+  eps_t = 1,
+  min_pts = 8,
+  Xi = 0.4
 )
 
 ### feature_combination_3
 generate_hstoptics_cluster_results(
   combination_order = 3,
-  eps_s = 2,
-  eps_t = 2,
-  min_pts = 300,
-  Xi = 0.5
+  eps_s = 1,
+  eps_t = 1,
+  min_pts = 8,
+  Xi = 0.9
 )
 
 ### feature_combination_4
 generate_hstoptics_cluster_results(
   combination_order = 4,
-  eps_s = 3,
-  eps_t = 3,
-  min_pts = 300,
-  Xi = 0.5
+  eps_s = 1,
+  eps_t = 1,
+  min_pts = 4,
+  Xi = 0.3
 )
 
 ### feature_combination_5
 generate_hstoptics_cluster_results(
   combination_order = 5,
-  eps_s = 3,
-  eps_t = 3,
-  min_pts = 400,
-  Xi = 0.2
+  eps_s = 2,
+  eps_t = 2,
+  min_pts = 200,
+  Xi = 0.36
 )
