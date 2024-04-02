@@ -49,7 +49,7 @@ x_range <- c(-1, 1)
 y_range <- c(-2, 2)
 t_range <- c(-1, 1)
 
-density <- 15
+density <- 20
 n_points <- density * (x_range[2] - x_range[1]) * (y_range[2] - y_range[1]) * (t_range[2] - t_range[1])
 
 simulated_data <- 
@@ -72,7 +72,7 @@ x_range_1 <- c(-1 - 2, 1 - 2)
 y_range_1 <- c(-2 - 2, 2 - 2)
 t_range_1 <- c(-1 - 2, 1 - 2)
 
-density_1 <- 15
+density_1 <- 20
 n_points_1 <- 
   density_1 * (x_range_1[2] - x_range_1[1]) * (y_range_1[2] - y_range_1[1]) * (t_range_1[2] - t_range_1[1])
 
@@ -80,7 +80,7 @@ x_range_2 <- c(-2 + 2, 2 + 2)
 y_range_2 <- c(-1 + 2, 1 + 2)
 t_range_2 <- c(-1 + 2, 1 + 2)
 
-density_2 <- 15
+density_2 <- 20
 n_points_2 <- 
   density_2 * (x_range_2[2] - x_range_2[1]) * (y_range_2[2] - y_range_2[1]) * (t_range_2[2] - t_range_2[1])
 
@@ -107,7 +107,7 @@ x_range_1 <- c(-1, 1)
 y_range_1 <- c(-2, 2)
 t_range_1 <- c(-1, 1)
 
-density_1 <- 15
+density_1 <- 20
 n_points_1 <- 
   density_1 * (x_range_1[2] - x_range_1[1]) * (y_range_1[2] - y_range_1[1]) * (t_range_1[2] - t_range_1[1])
 
@@ -115,7 +115,7 @@ x_range_2 <- c(-5, 5)
 y_range_2 <- c(-3, 3)
 t_range_2 <- c(-3, 3)
 
-density_2 <- 1
+density_2 <- 3
 n_points_2 <- 
   density_2 * (x_range_2[2] - x_range_2[1]) * (y_range_2[2] - y_range_2[1]) * (t_range_2[2] - t_range_2[1])
 
@@ -142,7 +142,7 @@ x_range_1 <- c(-3, -1)
 y_range_1 <- c(-1, 1)
 t_range_1 <- c(-2, 2)
 
-density_1 <- 15
+density_1 <- 20
 n_points_1 <- 
   density_1 * (x_range_1[2] - x_range_1[1]) * (y_range_1[2] - y_range_1[1]) * (t_range_1[2] - t_range_1[1])
 
@@ -150,7 +150,7 @@ x_range_2 <- c(1, 3)
 y_range_2 <- c(-1, 1)
 t_range_2 <- c(-2, 2)
 
-density_2 <- 15
+density_2 <- 20
 n_points_2 <- 
   density_2 * (x_range_2[2] - x_range_2[1]) * (y_range_2[2] - y_range_2[1]) * (t_range_2[2] - t_range_2[1])
 
@@ -158,7 +158,7 @@ x_range_3 <- c(-5, 5)
 y_range_3 <- c(-3, 3)
 t_range_3 <- c(-3, 3)
 
-density_3 <- 1
+density_3 <- 3
 n_points_3 <- 
   density_3 * (x_range_3[2] - x_range_3[1]) * (y_range_3[2] - y_range_3[1]) * (t_range_3[2] - t_range_3[1])
 

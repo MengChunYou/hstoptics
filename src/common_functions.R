@@ -40,7 +40,7 @@ wirte_cluster_results <- function(
   message(paste("write", output_name))
 }
 
-plot_cluster_results_3d <- function(cluster_results){
+plot_cluster_results_3d <- function(simulated_data, cluster_results){
   
   # This is a function to show cluster results in 3d plot
   plot_color = c(rgb(0.8,0.8,0.8), rgb(0,0,1,0.2), rgb(0,1,0,0.2), rgb(1,0,0,0.2))
