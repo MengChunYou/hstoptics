@@ -185,10 +185,10 @@ generate_hstoptics_cluster_results(
 ### feature_combination_4
 generate_hstoptics_cluster_results(
   combination_order = 4,
-  eps_s = 1,
+  eps_s = 1.5,
   eps_t = 1,
-  min_pts = 4,
-  Xi = 0.3
+  min_pts = 70,
+  Xi = 0.15
 )
 
 ### feature_combination_5
