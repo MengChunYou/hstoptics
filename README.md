@@ -26,38 +26,32 @@ root/
  ├── src/
  │    ├── common_functions.R
  │    ├── simulation.R
- │    ├── descriptive_statistics/
- │    │    └── generate_plots.R (WIP)
- │    │ 
  │    ├── clustering_algorithms/
  │    │    ├── proposed_algorithm.R
  │    │    ├── stdbscan.R
  │    │    └── stkde.R (WIP)
  │    │
- │    └── performing_clustering/ (WIP)
- │          ├── 2d/ (WIP)
- │          │    ├── proposed_algorithm/
- │          │    │    ├── generate_cluster_results.R
- │          │    │    └── generate_cluster_plots.R
- │          │    │
- │          │    ├── stdbscan/
- │          │    │    └── ...
- │          │    │
- │          │    └── stkde/
- │          │          └── ...
- │          │
- │          └── 3d/
- │                ├── proposed_algorithm/
- │                │    ├── generate_cluster_results.R
- │                │    └── generate_cluster_plots.R
- │                │
- │                ├── stdbscan/
- │                │
- │                └── stkde/
+ │    ├── performing_clustering/ (WIP)
+ │    │    ├── proposed_algorithm/
+ │    │    │    ├── generate_2d_cluster_results.R
+ │    │    │    └── generate_3d_cluster_results.R
+ │    │    │
+ │    │    ├── stdbscan/
+ │    │    │    └── ...
+ │    │    │
+ │    │    └── stkde/
+ │    │          └── ...
+ │    │
+ │    └── visualiztion
+ │          ├── generate_2d_plots.R
+ │          ├── generate_3d_plots.R
+ │          ├── generate_cluster_2d_plots.R (WIP)
+ │          └── generate_cluster_3d_plots.R
+ │       
  │     
  ├── outputs/
  │    ├── descriptive_statistics/
- │    │    ├── 2d/ (WIP)
+ │    │    ├── 2d/
  │    │    │    ├── feature_combination_1_2d_plot.png
  │    │    │    ├── feature_combination_2_2d_plot.png
  │    │    │    └── ...

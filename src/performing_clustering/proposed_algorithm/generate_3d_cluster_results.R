@@ -1,4 +1,4 @@
-# generate_cluster_result.R
+# generate_3d_cluster_result.R
 
 ## generate_hstoptics_cluster_results function
 generate_hstoptics_cluster_results <- function(
@@ -18,7 +18,25 @@ generate_hstoptics_cluster_results <- function(
     eps_t = eps_t, 
     min_pts = min_pts)
   
-  # Generate reachability plot
+  # Early return if there is no finite value
+  if(all(hst_optics_result$reach_score %in% c(Inf, -Inf))) {
+    message("There is no finite value.")
+    
+    cluster_results <- simulated_data %>% 
+      mutate(cluster = 0)
+      
+    # Write cluster results 
+    wirte_cluster_results(
+      cluster_results,
+      algorithm_name = "proposed_algorithm",
+      combination_order = combination_order,
+      parameter_order = 1,
+      dim = 3)
+    
+    return()
+  }
+  
+  # Create a Generate reachability plot when the script is executed directly
   generate_reachability_plot = function(hst_optics_result){
     replace(hst_optics_result$reach_score, hst_optics_result$reach_score == Inf, NA) %>% 
       ifelse(is.na(.), max(., na.rm = T) * 1.1, .) %>% 
@@ -26,10 +44,7 @@ generate_hstoptics_cluster_results <- function(
            col = ifelse(. == max(.), "lightgray", "black"))
   }
   if (length(commandArgs(trailingOnly = TRUE)) == 0) {
-    tryCatch({
-      generate_reachability_plot(hst_optics_result)
-    },  error = function(e) e,
-    finally = message("Error in plot"))
+    generate_reachability_plot(hst_optics_result)
   }
   
   # Calculate steepness
@@ -150,26 +165,27 @@ generate_hstoptics_cluster_results <- function(
     cluster_results,
     algorithm_name = "proposed_algorithm",
     combination_order = combination_order,
-    parameter_order = "1")
+    parameter_order = 1,
+    dim = 3)
 }
 
 ## generate cluster results
 
 ### feature_combination_1
-# generate_hstoptics_cluster_results(
-#   combination_order = 1,
-#   eps_s = 1,
-#   eps_t = 1,
-#   min_pts = 3,
-#   Xi = 0.5
-# )
+generate_hstoptics_cluster_results(
+  combination_order = 1,
+  eps_s = 1,
+  eps_t = 1,
+  min_pts = 6,
+  Xi = 0.4
+)
 
 ### feature_combination_2
 generate_hstoptics_cluster_results(
   combination_order = 2,
   eps_s = 1,
   eps_t = 1,
-  min_pts = 8,
+  min_pts = 6,
   Xi = 0.4
 )
 
@@ -178,24 +194,24 @@ generate_hstoptics_cluster_results(
   combination_order = 3,
   eps_s = 1,
   eps_t = 1,
-  min_pts = 8,
+  min_pts = 6,
   Xi = 0.9
 )
 
 ### feature_combination_4
 generate_hstoptics_cluster_results(
   combination_order = 4,
-  eps_s = 1.5,
+  eps_s = 1,
   eps_t = 1,
-  min_pts = 70,
-  Xi = 0.15
+  min_pts = 6,
+  Xi = 0.4
 )
 
 ### feature_combination_5
 generate_hstoptics_cluster_results(
   combination_order = 5,
-  eps_s = 2,
-  eps_t = 2,
-  min_pts = 200,
-  Xi = 0.36
+  eps_s = 1,
+  eps_t = 1,
+  min_pts = 6,
+  Xi = 0.4
 )

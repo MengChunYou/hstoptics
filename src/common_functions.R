@@ -10,7 +10,7 @@ open_png <- function(filename, width = 960, height = 540) {
 read_simulated_data <- function(combination_order){
   simulated_data <- read.csv(
     paste(
-      "data/simulated/feature_combination_", combination_order,".csv", 
+      "simulated_data/feature_combination_", combination_order,".csv", 
       sep = ""))
   return(simulated_data)
 }
@@ -19,12 +19,15 @@ wirte_cluster_results <- function(
   cluster_results,
   algorithm_name,
   combination_order,
-  parameter_order) {
+  parameter_order,
+  dim) {
   
   # This is a function to write cluster results
   
   output_name <- paste(
-    "outputs/clustering_results/simulated_data/feature_combination_",
+    "outputs/clustering_results/",
+    dim,
+    "d/feature_combination_",
     combination_order,
     "/",
     algorithm_name,
@@ -55,11 +58,15 @@ plot_cluster_results_3d <- function(simulated_data, cluster_results){
            zlim = c(-1 * plot_lim, plot_lim))
 }
 
-read_cluster_results = function(algorithm_name,
-                                combination_order,
-                                parameter_order) {
+read_cluster_results = function(
+  algorithm_name,
+  combination_order,
+  parameter_order,
+  dim) {
   file_name <- paste(
-    "outputs/clustering_results/simulated_data/feature_combination_",
+    "outputs/clustering_results/",
+    dim,
+    "d/feature_combination_",
     combination_order,
     "/",
     algorithm_name,
