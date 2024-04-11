@@ -42,7 +42,7 @@ root/
  │    │    └── stkde/
  │    │          └── ...
  │    │
- │    └── visualiztion
+ │    └── visualization/
  │          ├── generate_2d_plots.R
  │          ├── generate_3d_plots.R
  │          ├── generate_cluster_2d_plots.R (WIP)
