@@ -19,7 +19,7 @@ wirte_simulated_data = function(simulated_data, file_order){
   write.csv( 
     simulated_data, 
     file = paste(
-      "data/simulated/feature_combination_",
+      "simulated_data/feature_combination_",
       file_order,
       ".csv",
       sep = ""

@@ -11,10 +11,10 @@ setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 source("src/common_functions.R")
 
 # 1: Simulation
-# source("src/simulation.R")
+source("src/simulation.R")
 
 # 2: Descriptive statistics
-# source("src/descriptive_statistics/generate_plots.R")
+source("src/descriptive_statistics/generate_plots.R")
 
 # 3: Functions for clustering algorithms
 source("src/clustering_algorithms/proposed_algorithm.R")
