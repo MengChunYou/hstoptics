@@ -25,8 +25,8 @@ source("src/clustering_algorithms/stdbscan.R")
 # 4: Performing clustering
 
 ## 4-1: Two dimensions
-# source("src/performing_clustering/proposed_algorithm/generate_2d_cluster_results.R")
-# source("src/performing_clustering/stdbscan/generate_2d_cluster_results.R")
+source("src/performing_clustering/proposed_algorithm/generate_2d_cluster_results.R")
+source("src/performing_clustering/stdbscan/generate_2d_cluster_results.R")
 # source("src/performing_clustering/stkde/generate_2d_cluster_results.R")
 
 ## 4-2: Three dimensions
@@ -37,7 +37,7 @@ source("src/performing_clustering/stdbscan/generate_3d_cluster_results.R")
 # 5: Generate cluster plots
 
 ## 4-1: Two dimensions
-# source("src/visualization/generate_cluster_2d_plots.R")
+source("src/visualization/generate_cluster_2d_plots.R")
 
 ## 4-2: Three dimensions
 source("src/visualization/generate_cluster_3d_plots.R")

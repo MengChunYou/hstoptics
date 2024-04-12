@@ -1,4 +1,4 @@
-# generate_3d_cluster_result.R
+# generate_3d_cluster_results.R
 
 ## generate_hstoptics_cluster_results function
 generate_hstoptics_cluster_results <- function(

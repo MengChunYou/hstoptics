@@ -1,4 +1,4 @@
-# generate_cluster_results.R
+# generate_3d_cluster_results.R
 
 library(rgl)
 library(magrittr)
