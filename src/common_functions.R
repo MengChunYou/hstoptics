@@ -65,7 +65,7 @@ plot_cluster_results_3d <- function(simulated_data, cluster_results){
 plot_cluster_results_2d <- function(simulated_data, cluster_results){
   
   # This is a function to show cluster results in 2d plot
-  plot_color = c(rgb(0.8,0.8,0.8), rgb(0,0,1,0.2), rgb(0,1,0,0.2), rgb(1,0,0,0.2))
+  plot_color = c(rgb(0.8,0.8,0.8,0.2), rgb(0,0,1,0.2), rgb(0,1,0,0.2), rgb(1,0,0,0.2))
   plot_lim <- 10
   lim <- c(-1 * plot_lim, plot_lim)
   
