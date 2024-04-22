@@ -6,7 +6,8 @@ generate_hstoptics_cluster_results <- function(
   eps_s,
   eps_t,
   min_pts,
-  Xi){
+  Xi,
+  window_size){
   
   # Read simulated data
   simulated_data <- read_simulated_data(combination_order)
@@ -37,58 +38,93 @@ generate_hstoptics_cluster_results <- function(
     return()
   }
   
-  # Create a Generate reachability plot when the script is executed directly
+  # Create a Generate reachability
   generate_reachability_plot = function(hst_optics_result){
     replace(hst_optics_result$reach_score, hst_optics_result$reach_score == Inf, NA) %>% 
       ifelse(is.na(.), max(., na.rm = T) * 1.1, .) %>% 
       plot(., type = "h", ylab = "Reachability scores", xlab = "Order",
            col = ifelse(. == max(.), "lightgray", "black"))
   }
+  
+  # Identify location of faults based on given parameter Xi and window_size
+  find_faults <- function(hst_optics_result, Xi, window_size){
+    
+    # Initailize
+    faults <- rep(0, times = nrow(hst_optics_result))
+    smalleast_slope = Inf
+    largest_slope = -Inf
+    best_start_order = NA
+    best_end_order = NA
+    current_up_down = 0
+    
+    for (ii in 1:nrow(hst_optics_result)) {
+      
+      # Set up searching window
+      window_start <- ii + 1
+      window_end <- min(nrow(hst_optics_result), ii + window_size)
+      
+      # Find nearest order that fit condition
+      diffs <- hst_optics_result$reach_score[window_start:window_end] - hst_optics_result$reach_score[ii]
+      nearest_order <- (which((diffs < (-Xi)) | (diffs > (Xi))) + ii)[1]
+      
+      if (is.na(nearest_order)){
+        if (current_up_down == 1) {
+          # If upward trend doesn't continue, record upward fault position
+          faults[best_start_order] <- current_up_down
+          best_start_order <- NA
+        } else if (current_up_down == -1) {
+          # If downward trend doesn't continue, record downward fault position
+          faults[best_end_order] <- current_up_down
+          best_end_order <- NA
+        }
+        # if there is no order fit condition, move to next order
+        current_up_down <- 0
+        next
+      }
+      print(paste(ii, nearest_order))
+      # update largest_start_order or smalleast_end_order
+      slope <- (diffs[which((diffs < (-Xi)) | (diffs > (Xi)))[1]]) / (nearest_order - ii)
+      if (slope > 0) {
+        current_up_down <- 1
+        if (slope >= largest_slope) {
+          largest_slope <- slope
+          best_start_order <- ii
+        }
+      } else if (slope < 0) {
+        current_up_down <- -1
+        if (slope <= smalleast_slope) {
+          smalleast_slope <- slope
+          best_end_order <- nearest_order
+        }
+      }
+    }
+    return(faults)
+  }
+  faults <- find_faults(hst_optics_result, Xi, window_size)
+  
+  # Plot when the script is executed directly
   if (length(commandArgs(trailingOnly = TRUE)) == 0) {
     generate_reachability_plot(hst_optics_result)
+    abline(v = which(faults==1), col = "red")
+    abline(v = which(faults==-1), col = "blue")
   }
-  
-  # Calculate steepness
-  cal_reach_score_diff <- function(hst_optics_result){
-    diff <- hst_optics_result$reach_score[2:nrow(hst_optics_result)] - 
-      hst_optics_result$reach_score[1:(nrow(hst_optics_result)-1)]
-    return(diff)
-  }
-  steepness <- hst_optics_result %>% cal_reach_score_diff()
-  
-  # Identify location of faults based on given parameter Xi
-  find_faults <- function(steepness, Xi){
-    move <- rep(0, times = length(steepness))
-    move[which(steepness < (-Xi))] <- -1
-    move[which(steepness>(Xi))] <- 1
-    return(move)
-  }
-  faults <- find_faults(steepness, Xi)
   
   # Identify levels for each point
   find_levels <- function(faults, hst_optics_result){
     levels = c(0)
     current_level = 0
     
-    for(ii in 1:(length(faults))){
+    for(ii in 2:(length(faults))){
       current_level = current_level + faults[ii]
       
-      # Replace levels larger than 0 with 0
-      if(current_level > 0){
-        current_level = 0
-      }
-      
-      # Replace the level with 0 when the reach_score is Inf
-      if(hst_optics_result$reach_score[ii+1] == Inf){
-        current_level = 0
-      }
-      
       # Record level for current point
-      levels[ii + 1] = current_level
+      levels[ii] = current_level
     }
     
-    # Set the last level as 0
-    levels[length(levels)] = 0
+    levels = levels - max(levels)
+    
+    # Replace the level with 0 when the reach_score is Inf
+    levels[hst_optics_result$reach_score == Inf] = 0
     
     # Create a plot when running the script interactively
     if (interactive()) {
@@ -178,7 +214,8 @@ generate_hstoptics_cluster_results(
   eps_s = 1,
   eps_t = 1,
   min_pts = 20,
-  Xi = 0.1
+  Xi = 0.18,
+  window_size = 500
 )
 
 ### feature_combination_2
@@ -187,7 +224,8 @@ generate_hstoptics_cluster_results(
   eps_s = 1,
   eps_t = 1,
   min_pts = 20,
-  Xi = 0.1
+  Xi = 0.18,
+  window_size = 500
 )
 
 ### feature_combination_3
@@ -196,7 +234,8 @@ generate_hstoptics_cluster_results(
   eps_s = 1,
   eps_t = 1,
   min_pts = 20,
-  Xi = 0.1
+  Xi = 0.18,
+  window_size = 500
 )
 
 ### feature_combination_4
@@ -205,7 +244,8 @@ generate_hstoptics_cluster_results(
   eps_s = 1,
   eps_t = 1,
   min_pts = 20,
-  Xi = 0.1
+  Xi = 0.18,
+  window_size = 500
 )
 
 ### feature_combination_5
@@ -214,5 +254,6 @@ generate_hstoptics_cluster_results(
   eps_s = 1,
   eps_t = 1,
   min_pts = 20,
-  Xi = 0.1
+  Xi = 0.18,
+  window_size = 500
 )
