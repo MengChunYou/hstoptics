@@ -13,12 +13,6 @@ for (ii in 1:5) {
       ".csv",
       sep = ""))
   
-  # Set plotting parameters
-  plot_lim <- 10
-  point_col <- rgb(0.3, 0.3, 0.3, 0.2)
-  projection_col <- rgb(0.8,0.8,0.8,0.2)
-  lim <- c(-1 * plot_lim, plot_lim)
-  
   # Open a PNG device for graphics output
   open_png(
     paste(

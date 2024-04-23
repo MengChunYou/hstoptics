@@ -47,19 +47,23 @@ wirte_cluster_results <- function(
   message(paste("write", output_name))
 }
 
+# Set plotting parameters
+plot_lim <- 10
+point_col <- rgb(0.3, 0.3, 0.3, 0.2)
+projection_col <- rgb(0.8,0.8,0.8,0.2)
+lim <- c(-1 * plot_lim, plot_lim)
+
 plot_cluster_results_3d <- function(simulated_data, cluster_results){
   
   # This is a function to show cluster results in 3d plot
   plot_color <- c(rgb(0.8,0.8,0.8), rgb(0,0,1,0.2), rgb(0,1,0,0.2), rgb(1,0,0,0.2))
-  plot_lim <- 10
-  lim <- c(-1 * plot_lim, plot_lim)
   
   simulated_data %>% 
     plot3d(
       aspect = F, col = plot_color[cluster_results$cluster + 1],
-      xlim = c(-1 * plot_lim, plot_lim), 
-      ylim = c(-1 * plot_lim, plot_lim), 
-      zlim = c(-1 * plot_lim, plot_lim))
+      xlim = lim, 
+      ylim = lim, 
+      zlim = lim)
 }
 
 plot_cluster_results_2d <- function(simulated_data, cluster_results){

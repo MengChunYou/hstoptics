@@ -51,11 +51,13 @@ generate_hstoptics_cluster_results <- function(
     
     # Initailize
     faults <- rep(0, times = nrow(hst_optics_result))
-    smalleast_slope = Inf
-    largest_slope = -Inf
-    best_start_order = NA
-    best_end_order = NA
-    current_up_down = 0
+    smalleast_slope <- Inf
+    largest_slope <- -Inf
+    best_start_order <- NA
+    best_end_order <- NA
+    current_up_down <- 0
+    # slope <- 0
+    # diff <- 0
     
     for (ii in 1:nrow(hst_optics_result)) {
       
@@ -67,23 +69,37 @@ generate_hstoptics_cluster_results <- function(
       diffs <- hst_optics_result$reach_score[window_start:window_end] - hst_optics_result$reach_score[ii]
       nearest_order <- (which((diffs < (-Xi)) | (diffs > (Xi))) + ii)[1]
       
-      if (is.na(nearest_order)){
+      if (is.na(nearest_order)) {
         if (current_up_down == 1) {
           # If upward trend doesn't continue, record upward fault position
           faults[best_start_order] <- current_up_down
           best_start_order <- NA
+          largest_slope = -Inf
         } else if (current_up_down == -1) {
           # If downward trend doesn't continue, record downward fault position
           faults[best_end_order] <- current_up_down
           best_end_order <- NA
+          smalleast_slope = Inf
         }
         # if there is no order fit condition, move to next order
         current_up_down <- 0
         next
       }
-      print(paste(ii, nearest_order))
+      # } else {
+      #   next_diff <- diffs[which((diffs < (-Xi)) | (diffs > (Xi)))[1]]
+      #   message(paste(ii, nearest_order, diff, sep = ", "))
+      #   if ((diff * next_diff) < 0) {
+      #     record_fault()
+      #     # if there is no order fit condition, move to next order
+      #     current_up_down <- 0
+      #     next
+      #   }
+      # }
+      
       # update largest_start_order or smalleast_end_order
-      slope <- (diffs[which((diffs < (-Xi)) | (diffs > (Xi)))[1]]) / (nearest_order - ii)
+      slope <- diffs[which((diffs < (-Xi)) | (diffs > (Xi)))[1]] / (nearest_order - ii)
+      
+      message(paste(ii, nearest_order, slope, largest_slope, best_start_order, smalleast_slope, best_end_order, sep = ", "))
       if (slope > 0) {
         current_up_down <- 1
         if (slope >= largest_slope) {
@@ -211,49 +227,49 @@ generate_hstoptics_cluster_results <- function(
 ### feature_combination_1
 generate_hstoptics_cluster_results(
   combination_order = 1,
-  eps_s = 1,
-  eps_t = 1,
-  min_pts = 20,
-  Xi = 0.18,
+  eps_s = 1.5,
+  eps_t = 1.5,
+  min_pts = 100,
+  Xi = 0.4,
   window_size = 500
 )
 
 ### feature_combination_2
 generate_hstoptics_cluster_results(
   combination_order = 2,
-  eps_s = 1,
-  eps_t = 1,
-  min_pts = 20,
-  Xi = 0.18,
+  eps_s = 1.5,
+  eps_t = 1.5,
+  min_pts = 100,
+  Xi = 0.4,
   window_size = 500
 )
 
 ### feature_combination_3
 generate_hstoptics_cluster_results(
   combination_order = 3,
-  eps_s = 1,
-  eps_t = 1,
-  min_pts = 20,
-  Xi = 0.18,
+  eps_s = 1.5,
+  eps_t = 1.5,
+  min_pts = 100,
+  Xi = 0.4,
   window_size = 500
 )
 
 ### feature_combination_4
 generate_hstoptics_cluster_results(
   combination_order = 4,
-  eps_s = 1,
-  eps_t = 1,
-  min_pts = 20,
-  Xi = 0.18,
+  eps_s = 1.5,
+  eps_t = 1.5,
+  min_pts = 100,
+  Xi = 0.3,
   window_size = 500
 )
 
 ### feature_combination_5
 generate_hstoptics_cluster_results(
   combination_order = 5,
-  eps_s = 1,
-  eps_t = 1,
-  min_pts = 20,
-  Xi = 0.18,
+  eps_s = 1.5,
+  eps_t = 1.5,
+  min_pts = 100,
+  Xi = 0.4,
   window_size = 500
 )
