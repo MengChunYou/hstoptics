@@ -70,6 +70,17 @@ generate_hstoptics_cluster_results <- function(
       nearest_order <- (which((diffs < (-Xi)) | (diffs > (Xi))) + ii)[1]
       
       if (is.na(nearest_order)) {
+        current_slope <- 0
+      } else {
+        # update largest_start_order or smalleast_end_order
+        current_slope <- diffs[which((diffs < (-Xi)) | (diffs > (Xi)))[1]] / (nearest_order - ii)
+      }
+      
+      message(paste(ii, nearest_order, slope, largest_slope, best_start_order, smalleast_slope, best_end_order, current_slope, slope, sep = ", "))
+      
+      if ((is.na(nearest_order)) || (current_slope * slope < 0)) {
+        
+        # Record previous faults
         if (current_up_down == 1) {
           # If upward trend doesn't continue, record upward fault position
           faults[best_start_order] <- current_up_down
@@ -81,25 +92,16 @@ generate_hstoptics_cluster_results <- function(
           best_end_order <- NA
           smalleast_slope = Inf
         }
-        # if there is no order fit condition, move to next order
-        current_up_down <- 0
-        next
+        if (is.na(nearest_order)) {
+          # if there is no order fit condition, move to next order
+          current_up_down <- 0
+          next
+        }
       }
-      # } else {
-      #   next_diff <- diffs[which((diffs < (-Xi)) | (diffs > (Xi)))[1]]
-      #   message(paste(ii, nearest_order, diff, sep = ", "))
-      #   if ((diff * next_diff) < 0) {
-      #     record_fault()
-      #     # if there is no order fit condition, move to next order
-      #     current_up_down <- 0
-      #     next
-      #   }
-      # }
+
+      # Renew slope
+      slope <- current_slope
       
-      # update largest_start_order or smalleast_end_order
-      slope <- diffs[which((diffs < (-Xi)) | (diffs > (Xi)))[1]] / (nearest_order - ii)
-      
-      message(paste(ii, nearest_order, slope, largest_slope, best_start_order, smalleast_slope, best_end_order, sep = ", "))
       if (slope > 0) {
         current_up_down <- 1
         if (slope >= largest_slope) {
