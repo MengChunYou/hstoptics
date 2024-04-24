@@ -104,8 +104,8 @@ wirte_simulated_data(simulated_data, 3)
 set.seed(123)
 
 x_range_1 <- c(-1, 1)
-y_range_1 <- c(-2, 2)
-t_range_1 <- c(-1, 1)
+y_range_1 <- c(-1, 1)
+t_range_1 <- c(-2, 2)
 
 density_1 <- 50
 n_points_1 <- 
