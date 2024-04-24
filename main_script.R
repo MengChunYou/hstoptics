@@ -19,8 +19,8 @@ source("src/visualization/generate_3d_plots.R")
 
 # 3: Functions for clustering algorithms
 source("src/clustering_algorithms/proposed_algorithm.R")
-source("src/clustering_algorithms/stkde.R")
 source("src/clustering_algorithms/stdbscan.R")
+# source("src/clustering_algorithms/stkde.R")
 
 # 4: Performing clustering
 

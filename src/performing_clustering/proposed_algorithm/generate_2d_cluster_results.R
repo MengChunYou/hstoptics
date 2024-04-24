@@ -56,8 +56,9 @@ generate_hstoptics_cluster_results <- function(
     best_start_order <- NA
     best_end_order <- NA
     current_up_down <- 0
-    # slope <- 0
-    # diff <- 0
+    nearest_order <- NA
+    current_slope <- 0
+    slope <- 0
     
     for (ii in 1:nrow(hst_optics_result)) {
       
@@ -76,9 +77,11 @@ generate_hstoptics_cluster_results <- function(
         current_slope <- diffs[which((diffs < (-Xi)) | (diffs > (Xi)))[1]] / (nearest_order - ii)
       }
       
-      message(paste(ii, nearest_order, slope, largest_slope, best_start_order, smalleast_slope, best_end_order, current_slope, slope, sep = ", "))
+      if (length(commandArgs(trailingOnly = TRUE)) == 0) {
+        message(paste(ii, nearest_order, largest_slope, best_start_order, smalleast_slope, best_end_order, current_slope, slope, sep = ", "))
+      }
       
-      if ((is.na(nearest_order)) || (current_slope * slope < 0)) {
+      if ((is.na(nearest_order)) | (current_slope > 0 & slope < 0) | (current_slope < 0 & slope > 0)) {
         
         # Record previous faults
         if (current_up_down == 1) {
