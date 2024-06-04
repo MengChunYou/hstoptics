@@ -3,7 +3,7 @@
 library(ggplot2)
 
 # Loop through each file
-for (ii in 1:5) {
+for (ii in 1:7) {
   
   # Read the CSV file
   simulated_data <- read.csv(

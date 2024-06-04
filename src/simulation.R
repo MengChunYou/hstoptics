@@ -179,3 +179,55 @@ simulated_data <-
   )
 
 wirte_simulated_data(simulated_data, 5)
+
+## 1 low density cluster, 1 medium density cluster, 1 high density cluster, noise
+
+set.seed(123)
+
+x_range_1 <- c(-1, 1)
+y_range_1 <- c(-1, 1)
+t_range_1 <- c(-1, 1)
+
+density_1 <- 50
+n_points_1 <- 
+  density_1 * (x_range_1[2] - x_range_1[1]) * (y_range_1[2] - y_range_1[1]) * (t_range_1[2] - t_range_1[1])
+
+x_range_2 <- c(-3, 3)
+y_range_2 <- c(-2, 2)
+t_range_2 <- c(-2, 2)
+
+density_2 <- 15
+n_points_2 <- 
+  density_2 * (x_range_2[2] - x_range_2[1]) * (y_range_2[2] - y_range_2[1]) * (t_range_2[2] - t_range_2[1])
+
+x_range_3 <- c(-5, 5)
+y_range_3 <- c(-3, 3)
+t_range_3 <- c(-3, 3)
+
+density_3 <- 5
+n_points_3 <- 
+  density_3 * (x_range_3[2] - x_range_3[1]) * (y_range_3[2] - y_range_3[1]) * (t_range_3[2] - t_range_3[1])
+
+simulated_data <- 
+  rbind(
+    data.frame(x = runif(n_noise_points, min = -9.9, max = 9.9),
+               y = runif(n_noise_points, min = -9.9, max = 9.9),
+               t = runif(n_noise_points, min = -9.9, max = 9.9)),
+    data.frame(x = runif(n_points_1, min = x_range_1[1], max = x_range_1[2]),
+               y = runif(n_points_1, min = y_range_1[1], max = y_range_1[2]),
+               t = runif(n_points_1, min = t_range_1[1], max = t_range_1[2])),
+    data.frame(x = runif(n_points_2, min = x_range_2[1], max = x_range_2[2]),
+               y = runif(n_points_2, min = y_range_2[1], max = y_range_2[2]),
+               t = runif(n_points_2, min = t_range_2[1], max = t_range_2[2])),
+    data.frame(x = runif(n_points_3, min = x_range_3[1], max = x_range_3[2]),
+               y = runif(n_points_3, min = y_range_3[1], max = y_range_3[2]),
+               t = runif(n_points_3, min = t_range_3[1], max = t_range_3[2]))
+  )
+
+wirte_simulated_data(simulated_data, 6)
+
+## 1 low density cluster, 1 high density cluster, noise, with moving x range
+
+set.seed(123)
+
+wirte_simulated_data(simulated_data, 7)
