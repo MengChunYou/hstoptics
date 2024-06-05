@@ -230,4 +230,49 @@ wirte_simulated_data(simulated_data, 6)
 
 set.seed(123)
 
+x_range_1 <- c(-3, 3)
+y_range_1 <- c(-1, 1)
+t_range_1 <- c(-2, 2)
+
+density_1 <- 50
+n_points_1 <- 
+  density_1 * (x_range_1[2] - x_range_1[1]) * (y_range_1[2] - y_range_1[1]) * (t_range_1[2] - t_range_1[1])
+
+x_range_2 <- c(-5, 5)
+y_range_2 <- c(-3, 3)
+t_range_2 <- c(-3, 3)
+
+density_2 <- 5
+n_points_2 <- 
+  density_2 * (x_range_2[2] - x_range_2[1]) * (y_range_2[2] - y_range_2[1]) * (t_range_2[2] - t_range_2[1])
+
+noise_df = data.frame(x = runif(n_noise_points, min = -9.9, max = 9.9),
+                      y = runif(n_noise_points, min = -9.9, max = 9.9),
+                      t = runif(n_noise_points, min = -9.9, max = 9.9))
+
+high_den_df = data.frame(
+  x = runif(n_points_1, min = x_range_1[1], max = x_range_1[2]),
+  y = runif(n_points_1, min = y_range_1[1], max = y_range_1[2]),
+  t = runif(n_points_1, min = t_range_1[1], max = t_range_1[2])) %>% 
+  mutate(x_t = x - t) %>% 
+  filter(x_t >= -1) %>% 
+  filter(x_t <= 1) %>% 
+  dplyr::select(c(x, y, t))
+
+low_den_df = data.frame(
+  x = runif(n_points_2, min = x_range_2[1], max = x_range_2[2]),
+  y = runif(n_points_2, min = y_range_2[1], max = y_range_2[2]),
+  t = runif(n_points_2, min = t_range_2[1], max = t_range_2[2])) %>% 
+  mutate(x_t = x - t) %>% 
+  filter(x_t >= -3) %>% 
+  filter(x_t <= 3) %>% 
+  dplyr::select(c(x, y, t))
+
+simulated_data <- 
+  rbind(
+    noise_df,
+    high_den_df[,1:3],
+    low_den_df
+  )
+
 wirte_simulated_data(simulated_data, 7)
