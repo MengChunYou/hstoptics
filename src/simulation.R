@@ -188,7 +188,7 @@ x_range_1 <- c(-1, 1)
 y_range_1 <- c(-1, 1)
 t_range_1 <- c(-1, 1)
 
-density_1 <- 50
+density_1 <- 150
 n_points_1 <- 
   density_1 * (x_range_1[2] - x_range_1[1]) * (y_range_1[2] - y_range_1[1]) * (t_range_1[2] - t_range_1[1])
 
@@ -196,7 +196,7 @@ x_range_2 <- c(-3, 3)
 y_range_2 <- c(-2, 2)
 t_range_2 <- c(-2, 2)
 
-density_2 <- 15
+density_2 <- 50
 n_points_2 <- 
   density_2 * (x_range_2[2] - x_range_2[1]) * (y_range_2[2] - y_range_2[1]) * (t_range_2[2] - t_range_2[1])
 

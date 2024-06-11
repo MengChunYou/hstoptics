@@ -1,12 +1,14 @@
 # proposed_algorithm.R
 
-# hst_optics
-hst_optics <- function(
-    xyt_df, 
-    xyt_colname=c("x", "y", "t"),
-    eps_s, 
-    eps_t, 
-    min_pts) {
+# mst_optics
+mst_optics <- function(
+  xyt_df, 
+  xyt_colname=c("x", "y", "t"),
+  eps_s, 
+  eps_t, 
+  weight_s=1,
+  weight_t=1,
+  min_pts) {
   
   # This function orders spatio-temporal points to identify the clustering structure
   #
@@ -15,6 +17,8 @@ hst_optics <- function(
   #   xyt_colname: A vector which contains names of columns holding longitude, latitude, and time
   #   eps_s: Size (radius) of the spatial epsilon neighborhood
   #   eps_t: Size (radius) of the temporal epsilon neighborhood
+  #   weight_s: Weight of spatial distance
+  #   weight_t: Weight of time distance
   #   min_pts: Number of minimum points required in the eps_s and eps_t 
   #            neighborhood for core points (including the point itself).
   #
@@ -37,6 +41,14 @@ hst_optics <- function(
     sq_dist <- (one_point[1, xyt_colname[1]] - other_points[, xyt_colname[1]])^2 + 
       (one_point[1, xyt_colname[2]] - other_points[, xyt_colname[2]])^2
     return(sqrt(sq_dist))
+  }
+  
+  # A function calculate spatio-temporal distance from a specific point to other points
+  get_st_distance_to <- function(one_point, other_points, weight_s=1, weight_t=1) {
+    s_dist <- get_distance_to(one_point, other_points)
+    t_dist <- one_point[1, xyt_colname[3]] - other_points[, xyt_colname[3]]
+    sq_st_dist <- (weight_s * s_dist)^2 + (weight_t * t_dist)^2
+    return(sqrt(sq_st_dist))
   }
   
   for(iter in 1:nrow(xyt_df_copy)){  
@@ -85,11 +97,13 @@ hst_optics <- function(
       
       # If visited point is core point
       # Calculate core distance
-      core_dist <- st_nbs$dist %>% sort() %>% .[min_pts]
+      st_nbs <- st_nbs %>% 
+        mutate(st_dist = get_st_distance_to(xyt_df_copy[visited_id, ], ., weight_s=1, weight_t=1))
+      core_dist <- st_nbs$st_dist %>% sort() %>% .[min_pts]
       
       # Calculate reachability distance
       st_nbs <- st_nbs %>%
-        rename(reach_dist = dist) %>% 
+        rename(reach_dist = st_dist) %>% 
         mutate(reach_dist = ifelse(reach_dist < core_dist, 
                                    core_dist, 
                                    reach_dist))
