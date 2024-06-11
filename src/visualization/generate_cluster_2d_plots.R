@@ -56,7 +56,7 @@ generate_cluster_2d_plot = function(
 }
 
 ## generate proposed_algorithm cluster 3d plot
-for (order in 1:5) {
+for (order in 1:7) {
   generate_cluster_2d_plot(
     combination_order = order,
     parameter_order = 1,
@@ -64,7 +64,7 @@ for (order in 1:5) {
 }
 
 ## generate stdbscan cluster 3d plot
-for (order in 1:5) {
+for (order in 1:7) {
   generate_cluster_2d_plot(
     combination_order = order,
     parameter_order = 1,

@@ -74,3 +74,19 @@ generate_stdbscan_cluster_results(
   eps2 = 1,
   min_pts = 6
 )
+
+### feature_combination_6
+generate_stdbscan_cluster_results(
+  combination_order = 6,
+  eps = 1,
+  eps2 = 1,
+  min_pts = 6
+)
+
+### feature_combination_7
+generate_stdbscan_cluster_results(
+  combination_order = 7,
+  eps = 1,
+  eps2 = 1,
+  min_pts = 6
+)
