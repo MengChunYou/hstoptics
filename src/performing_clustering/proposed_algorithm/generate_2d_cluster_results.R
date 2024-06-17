@@ -1,7 +1,7 @@
 # generate_2d_cluster_results.R
 
-## generate_mst_optics_cluster_results function
-generate_mst_optics_cluster_results <- function(
+## generate_hst_optics_cluster_results function
+generate_hst_optics_cluster_results <- function(
   combination_order,
   eps_s,
   eps_t,
@@ -16,7 +16,7 @@ generate_mst_optics_cluster_results <- function(
   simulated_data$t <- 0
   
   # Get order and reachability scores
-  mst_optics_result = mst_optics(
+  hst_optics_result = hst_optics(
     simulated_data, 
     eps_s = eps_s, 
     eps_t = eps_t, 
@@ -25,7 +25,7 @@ generate_mst_optics_cluster_results <- function(
     min_pts = min_pts)
   
   # Early return if there is no finite value
-  if(all(mst_optics_result$reach_score %in% c(Inf, -Inf))) {
+  if(all(hst_optics_result$reach_score %in% c(Inf, -Inf))) {
     message("There is no finite value.")
     
     cluster_results <- simulated_data %>% 
@@ -43,18 +43,18 @@ generate_mst_optics_cluster_results <- function(
   }
   
   # Create a Generate reachability plot when the script is executed directly
-  generate_reachability_plot = function(mst_optics_result){
-    replace(mst_optics_result$reach_score, mst_optics_result$reach_score == Inf, NA) %>% 
+  generate_reachability_plot = function(hst_optics_result){
+    replace(hst_optics_result$reach_score, hst_optics_result$reach_score == Inf, NA) %>% 
       ifelse(is.na(.), max(., na.rm = T) * 1.1, .) %>% 
       plot(., type = "h", ylab = "Reachability scores", xlab = "Order",
            col = ifelse(. == max(.), "lightgray", "black"))
   }
   
   # Identify location of faults based on given parameter Xi and window_size
-  find_faults <- function(mst_optics_result, Xi, window_size){
+  find_faults <- function(hst_optics_result, Xi, window_size){
     
     # Initailize
-    faults <- rep(0, times = nrow(mst_optics_result))
+    faults <- rep(0, times = nrow(hst_optics_result))
     smalleast_slope <- Inf
     largest_slope <- -Inf
     best_start_order <- NA
@@ -64,14 +64,14 @@ generate_mst_optics_cluster_results <- function(
     current_slope <- 0
     slope <- 0
     
-    for (ii in 1:nrow(mst_optics_result)) {
+    for (ii in 1:nrow(hst_optics_result)) {
       
       # Set up searching window
       window_start <- ii + 1
-      window_end <- min(nrow(mst_optics_result), ii + window_size)
+      window_end <- min(nrow(hst_optics_result), ii + window_size)
       
       # Find nearest order that fit condition
-      diffs <- mst_optics_result$reach_score[window_start:window_end] - mst_optics_result$reach_score[ii]
+      diffs <- hst_optics_result$reach_score[window_start:window_end] - hst_optics_result$reach_score[ii]
       nearest_order <- (which((diffs < (-Xi)) | (diffs > (Xi))) + ii)[1]
       
       if (is.na(nearest_order)) {
@@ -125,17 +125,17 @@ generate_mst_optics_cluster_results <- function(
     }
     return(faults)
   }
-  faults <- find_faults(mst_optics_result, Xi, window_size)
+  faults <- find_faults(hst_optics_result, Xi, window_size)
   
   # Plot when the script is executed directly
   if (length(commandArgs(trailingOnly = TRUE)) == 0) {
-    generate_reachability_plot(mst_optics_result)
+    generate_reachability_plot(hst_optics_result)
     abline(v = which(faults==1), col = "red")
     abline(v = which(faults==-1), col = "blue")
   }
   
   # Identify levels for each point
-  find_levels <- function(faults, mst_optics_result){
+  find_levels <- function(faults, hst_optics_result){
     levels = c(0)
     current_level = 0
     
@@ -149,7 +149,7 @@ generate_mst_optics_cluster_results <- function(
     levels = levels - max(levels)
     
     # Replace the level with 0 when the reach_score is Inf
-    levels[mst_optics_result$reach_score == Inf] = 0
+    levels[hst_optics_result$reach_score == Inf] = 0
     
     # Replace the last level with 0
     levels[length(levels)] = 0
@@ -161,17 +161,17 @@ generate_mst_optics_cluster_results <- function(
     
     return(levels)
   }
-  levels <- find_levels(faults, mst_optics_result)
+  levels <- find_levels(faults, hst_optics_result)
   
   # Get cluster results 
-  find_clusters <- function(levels, mst_optics_result){
+  find_clusters <- function(levels, hst_optics_result){
     
     n_points <- length(levels)
     deepest_level <- range(levels)[1]
     
     # Initialize a dataframe to record points and their cluster memberships
     point_cluster_membership <- data.frame(
-      ordered_id = mst_optics_result$ordered_id[1:n_points]
+      ordered_id = hst_optics_result$ordered_id[1:n_points]
     )
     point_cluster_membership$cluster <- 0
     
@@ -223,7 +223,7 @@ generate_mst_optics_cluster_results <- function(
     
     return(cluster_results)
   }
-  cluster_results <- find_clusters(levels, mst_optics_result)
+  cluster_results <- find_clusters(levels, hst_optics_result)
   
   # Write cluster results 
   wirte_cluster_results(
@@ -237,7 +237,7 @@ generate_mst_optics_cluster_results <- function(
 ## generate cluster results
 
 ### feature_combination_1
-generate_mst_optics_cluster_results(
+generate_hst_optics_cluster_results(
   combination_order = 1,
   eps_s = 1.5,
   eps_t = 1.5,
@@ -249,7 +249,7 @@ generate_mst_optics_cluster_results(
 )
 
 ### feature_combination_2
-generate_mst_optics_cluster_results(
+generate_hst_optics_cluster_results(
   combination_order = 2,
   eps_s = 1.5,
   eps_t = 1.5,
@@ -261,7 +261,7 @@ generate_mst_optics_cluster_results(
 )
 
 ### feature_combination_3
-generate_mst_optics_cluster_results(
+generate_hst_optics_cluster_results(
   combination_order = 3,
   eps_s = 1.5,
   eps_t = 1.5,
@@ -273,7 +273,7 @@ generate_mst_optics_cluster_results(
 )
 
 ### feature_combination_4
-generate_mst_optics_cluster_results(
+generate_hst_optics_cluster_results(
   combination_order = 4,
   eps_s = 1.5,
   eps_t = 1.5,
@@ -285,7 +285,7 @@ generate_mst_optics_cluster_results(
 )
 
 ### feature_combination_5
-generate_mst_optics_cluster_results(
+generate_hst_optics_cluster_results(
   combination_order = 5,
   eps_s = 1.5,
   eps_t = 1.5,
@@ -297,19 +297,19 @@ generate_mst_optics_cluster_results(
 )
 
 ### feature_combination_6
-generate_mst_optics_cluster_results(
+generate_hst_optics_cluster_results(
   combination_order = 6,
   eps_s = 1.5,
   eps_t = 1.5,
   weight_s = 1,
   weight_t = 1,
   min_pts = 100,
-  Xi = 0.3,
-  window_size = 500
+  Xi = 0.06,
+  window_size = 450
 )
 
 ### feature_combination_7
-generate_mst_optics_cluster_results(
+generate_hst_optics_cluster_results(
   combination_order = 7,
   eps_s = 1.5,
   eps_t = 1.5,

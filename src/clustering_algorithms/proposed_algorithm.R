@@ -1,7 +1,7 @@
 # proposed_algorithm.R
 
-# mst_optics
-mst_optics <- function(
+# hst_optics
+hst_optics <- function(
   xyt_df, 
   xyt_colname=c("x", "y", "t"),
   eps_s, 

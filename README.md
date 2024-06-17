@@ -22,35 +22,39 @@ root/
  │    ├── feature_combination_3.csv
  │    ├── feature_combination_4.csv
  │    ├── feature_combination_5.csv
- │    ├── feature_combination_6.csv
+ │    ├── feature_combination_6.csv (WIP)
  │    └── feature_combination_7.csv
  │
  ├── src/
  │    ├── common_functions.R
- │    ├── simulation.R
+ │    ├── simulation.R (WIP)
  │    ├── clustering_algorithms/
  │    │    ├── proposed_algorithm.R
  │    │    ├── stdbscan.R
  │    │    └── stkde.R (WIP)
  │    │
- │    ├── performing_clustering/ (WIP)
- │    │    ├── proposed_algorithm/
+ │    ├── performing_clustering/
+ │    │    ├── proposed_algorithm/ (WIP)
  │    │    │    ├── generate_2d_cluster_results.R
  │    │    │    └── generate_3d_cluster_results.R
  │    │    │
  │    │    ├── stdbscan/
  │    │    │    └── ...
  │    │    │
- │    │    └── stkde/
+ │    │    └── stkde/ (WIP)
  │    │          └── ...
  │    │
  │    └── visualization/
- │          ├── generate_2d_plots.R
- │          ├── generate_3d_plots.R
- │          ├── generate_cluster_2d_plots.R (WIP)
- │          └── generate_cluster_3d_plots.R
- │       
- │     
+ │          ├── descriptive_statistics/
+ │          │    ├── generate_2d_plots.R
+ │          │    └── generate_3d_plots.R
+ │          ├── cluster_plots/ (WIP)
+ │          │    ├── generate_2d_cluster_plots.R
+ │          │    └── generate_3d_cluster_plots.R
+ │          └── cluster_structures/ (WIP, only for proposed method)
+ │                ├── generate_2d_tree_diagrams.R
+ │                └── generate_3d_tree_diagrams.R
+ │
  ├── outputs/
  │    ├── descriptive_statistics/
  │    │    ├── 2d/
@@ -63,17 +67,33 @@ root/
  │    │          ├── feature_combination_2_3d_plot.png
  │    │          └── ...
  │    │
- │    ├── cluster_results/ (WIP)
+ │    ├── parameters/ (WIP, only for proposed method)
+ │    │    ├── 2d/
+ │    │    │    ├── feature_combination_1_parameters.csv
+ │    │    │    ├── feature_combination_2_parameters.csv
+ │    │    │    ├── ...
+ │    │    │    └── feature_combination_7_parameters.csv
+ │    │    │
+ │    │    └── 3d/
+ │    │          ├── feature_combination_1_parameters.csv
+ │    │          ├── feature_combination_2_parameters.csv
+ │    │          ├── ...
+ │    │          └── feature_combination_7_parameters.csv
+ │    │
+ │    ├── clustering_results/ (WIP)
  │    │    ├── 2d/
  │    │    │    ├── feature_combination_1/
  │    │    │    │    ├── proposed_algorithm/
  │    │    │    │    │    ├── parameter_1_cluster_results.csv
  │    │    │    │    │    ├── parameter_2_cluster_results.csv
- │    │    │    │    │    └── ...
+ │    │    │    │    │    ├── ...
+ │    │    │    │    │    └── parameter_9_cluster_results.csv
  │    │    │    │    │ 
  │    │    │    │    ├── stdbscan/
+ │    │    │    │    │    └── parameter_1_cluster_results.csv
  │    │    │    │    │ 
  │    │    │    │    └── stkde/
+ │    │    │    │          └── parameter_1_cluster_results.csv
  │    │    │    │    
  │    │    │    ├── feature_combination_2/
  │    │    │    │    
@@ -82,35 +102,64 @@ root/
  │    │    └── 3d/
  │    │          └── ...
  │    │     
- │    └── cluster_plots/ (WIP)
+ │    ├── cluster_plots/ (WIP)
+ │    │    ├── 2d/
+ │    │    │    ├── feature_combination_1/
+ │    │    │    │    ├── proposed_algorithm/
+ │    │    │    │    │    ├── parameter_1_cluster_2d_plot.png
+ │    │    │    │    │    ├── parameter_2_cluster_2d_plot.png
+ │    │    │    │    │    ├── ...
+ │    │    │    │    │    └── parameter_9_cluster_2d_plot.png
+ │    │    │    │    │ 
+ │    │    │    │    ├── stdbscan/
+ │    │    │    │    │    └── parameter_1_cluster_2d_plot.png
+ │    │    │    │    │ 
+ │    │    │    │    └── stkde/
+ │    │    │    │          └── parameter_1_cluster_2d_plot.png
+ │    │    │    │    
+ │    │    │    ├── feature_combination_2/
+ │    │    │    │    
+ │    │    │    └── ...
+ │    │    │
+ │    │    └── 3d/
+ │    │          ├── feature_combination_1/
+ │    │          │    ├── proposed_algorithm/
+ │    │          │    │    ├── parameter_1_cluster_3d_plot.png
+ │    │          │    │    ├── parameter_2_cluster_3d_plot.png
+ │    │          │    │    ├── ...
+ │    │          │    │    └── parameter_9_cluster_3d_plot.png
+ │    │          │    │ 
+ │    │          │    ├── stdbscan/
+ │    │          │    │    └── parameter_1_cluster_3d_plot.png
+ │    │          │    │ 
+ │    │          │    └── stkde/
+ │    │          │          └── parameter_1_cluster_3d_plot.png
+ │    │          │    
+ │    │          ├── feature_combination_2/
+ │    │          │    
+ │    │          └── ...
+ │    │
+ │    └── cluster_structures/ (WIP, only for proposed method)
  │          ├── 2d/
  │          │    ├── feature_combination_1/
- │          │    │    ├── proposed_algorithm/
- │          │    │    │    ├── parameter_1_cluster_2d_plot.png
- │          │    │    │    ├── parameter_2_cluster_2d_plot.png
- │          │    │    │    └── ...
- │          │    │    │ 
- │          │    │    ├── stdbscan/
- │          │    │    │ 
- │          │    │    └── stkde/
- │          │    │    
+ │          │    │    ├── edge_lists/
+ │          │    │    │    ├── parameter_1_cluster_edge_list.csv
+ │          │    │    │    ├── parameter_2_cluster_edge_list.csv
+ │          │    │    │    ├── ...
+ │          │    │    │    └── parameter_9_cluster_edge_list.csv
+ │          │    │    │
+ │          │    │    └── tree_diagrams/
+ │          │    │          ├── parameter_1_cluster_edge_list.csv
+ │          │    │          ├── parameter_2_cluster_edge_list.csv
+ │          │    │          ├── ...
+ │          │    │          └── parameter_9_cluster_edge_list.csv
+ │          │    │
  │          │    ├── feature_combination_2/
+ │          │    │    └── ...
  │          │    │    
  │          │    └── ...
  │          │
  │          └── 3d/
- │                ├── feature_combination_1/
- │                │    ├── proposed_algorithm/
- │                │    │    ├── parameter_1_cluster_3d_plot.png
- │                │    │    ├── parameter_2_cluster_3d_plot.png
- │                │    │    └── ...
- │                │    │ 
- │                │    ├── stdbscan/
- │                │    │ 
- │                │    └── stkde/
- │                │    
- │                ├── feature_combination_2/
- │                │    
  │                └── ...
  │
  ├── reports/
