@@ -184,19 +184,19 @@ wirte_simulated_data(simulated_data, 5)
 
 set.seed(123)
 
-x_range_1 <- c(-0.5, 0.5)
-y_range_1 <- c(-0.5, 0.5)
-t_range_1 <- c(-0.5, 0.5)
+x_range_1 <- c(-1, 1)
+y_range_1 <- c(-1, 1)
+t_range_1 <- c(-1, 1)
 
-density_1 <- 200
+density_1 <- 100
 n_points_1 <- 
   density_1 * (x_range_1[2] - x_range_1[1]) * (y_range_1[2] - y_range_1[1]) * (t_range_1[2] - t_range_1[1])
 
-x_range_2 <- c(-2, 2)
+x_range_2 <- c(-2.5, 2.5)
 y_range_2 <- c(-2, 2)
 t_range_2 <- c(-2, 2)
 
-density_2 <- 50
+density_2 <- 10
 n_points_2 <- 
   density_2 * (x_range_2[2] - x_range_2[1]) * (y_range_2[2] - y_range_2[1]) * (t_range_2[2] - t_range_2[1])
 

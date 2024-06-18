@@ -314,8 +314,8 @@ generate_hst_optics_cluster_results(
   weight_s = 1,
   weight_t = 1,
   min_pts = 100,
-  Xi = 0.06,
-  window_size = 450
+  Xi = 0.24,
+  window_size = 800
 )
 
 ### feature_combination_7
