@@ -170,5 +170,5 @@ root/
 Download the required packages by running the following command in R:
 
 ``` plaintext
-install.packages(c("dplyr", "MASS", "sf", "tidyr", "ggplot2"))
+install.packages(c("dplyr", "sf", "tidyr", "rgl", "ggplot2", "igraph", "MASS", "scatterplot3d"))
 ```
