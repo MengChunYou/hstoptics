@@ -24,6 +24,14 @@ generate_hst_optics_cluster_results <- function(
     weight_t = weight_t,
     min_pts = min_pts)
   
+  # Get reach score summary when the script is executed directly
+  if (length(commandArgs(trailingOnly = TRUE)) == 0) {
+    cluster_points_reach_score <- hst_optics_result$reach_score %>% .[is.finite(.)]
+    print(cluster_points_reach_score %>% summary())
+    print(cluster_points_reach_score %>% IQR())
+    print(cluster_points_reach_score %>% sd())
+  }
+  
   # Early return if there is no finite value
   if(all(hst_optics_result$reach_score %in% c(Inf, -Inf))) {
     message("There is no finite value.")
@@ -82,7 +90,7 @@ generate_hst_optics_cluster_results <- function(
       }
       
       if (length(commandArgs(trailingOnly = TRUE)) == 0) {
-        message(paste(ii, nearest_order, largest_slope, best_start_order, smalleast_slope, best_end_order, current_slope, slope, sep = ", "))
+        # message(paste(ii, nearest_order, largest_slope, best_start_order, smalleast_slope, best_end_order, current_slope, slope, sep = ", "))
       }
       
       if ((is.na(nearest_order)) | (current_slope > 0 & slope < 0) | (current_slope < 0 & slope > 0)) {

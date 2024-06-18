@@ -55,7 +55,7 @@ hst_optics <- function(
     
     # Visit each point one by one
     if (length(commandArgs(trailingOnly = TRUE)) == 0) {
-      message(paste(iter, "/", nrow(xyt_df_copy), sep = ""))
+      # message(paste(iter, "/", nrow(xyt_df_copy), sep = ""))
     }
     
     if(nrow(points_to_be_visited) == 0){

@@ -36,18 +36,18 @@ source("src/performing_clustering/stdbscan/generate_3d_cluster_results.R")
 
 # 5: Generate cluster plots
 
-## 4-1: Two dimensions
+## 5-1: Two dimensions
 source("src/visualization/cluster_plots/generate_cluster_2d_plots.R")
 
-## 4-2: Three dimensions
+## 5-2: Three dimensions
 source("src/visualization/cluster_plots/generate_cluster_3d_plots.R")
 
 # 6: Generate tree diagrams
 
-## 4-1: Two dimensions
+## 6-1: Two dimensions
 source("src/visualization/cluster_structures/generate_2d_tree_diagrams.R")
 
-## 4-2: Three dimensions
+## 6-2: Three dimensions
 source("src/visualization/cluster_structures/generate_3d_tree_diagrams.R")
 
 # end of main_script.R
