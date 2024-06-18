@@ -28,7 +28,9 @@ generate_hst_optics_cluster_results <- function(
   if (length(commandArgs(trailingOnly = TRUE)) == 0) {
     cluster_points_reach_score <- hst_optics_result$reach_score %>% .[is.finite(.)]
     print(cluster_points_reach_score %>% summary())
+    print('IQR:')
     print(cluster_points_reach_score %>% IQR())
+    print('sd:')
     print(cluster_points_reach_score %>% sd())
   }
   
@@ -312,8 +314,8 @@ generate_hst_optics_cluster_results(
   weight_s = 1,
   weight_t = 1,
   min_pts = 50,
-  Xi = 0.1,
-  window_size = 500
+  Xi = 0.13,
+  window_size = 340
 )
 
 ### feature_combination_7
