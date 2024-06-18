@@ -3,6 +3,7 @@
 ## generate_hst_optics_cluster_results function
 generate_hst_optics_cluster_results <- function(
   combination_order,
+  parameter_order,
   eps_s,
   eps_t,
   weight_s=1,
@@ -46,13 +47,13 @@ generate_hst_optics_cluster_results <- function(
       cluster_results,
       algorithm_name = "proposed_algorithm",
       combination_order = combination_order,
-      parameter_order = 1,
+      parameter_order = parameter_order,
       dim = 2)
     
     return()
   }
   
-  # Create a Generate reachability plot when the script is executed directly
+  # Generate reachability plot when the script is executed directly
   generate_reachability_plot = function(hst_optics_result){
     replace(hst_optics_result$reach_score, hst_optics_result$reach_score == Inf, NA) %>% 
       ifelse(is.na(.), max(., na.rm = T) * 1.1, .) %>% 
@@ -143,6 +144,26 @@ generate_hst_optics_cluster_results <- function(
     abline(v = which(faults==1), col = "red")
     abline(v = which(faults==-1), col = "blue")
   }
+  
+  # Open a PNG device for graphics output
+  output_name <- paste(
+    "outputs/reachability_plots/2d/",
+    "feature_combination_", combination_order,
+    "/parameter_", parameter_order,
+    "_reachability_plot.png",
+    sep = ""
+  )
+  open_png(output_name)
+  
+  # Create reachability plot
+  generate_reachability_plot(hst_optics_result)
+  abline(v = which(faults==1), col = "red")
+  abline(v = which(faults==-1), col = "blue")
+  
+  # Close the PNG device
+  dev.off()
+  
+  message(paste("write", output_name))
   
   # Identify levels for each point
   find_levels <- function(faults, hst_optics_result){
@@ -249,6 +270,7 @@ generate_hst_optics_cluster_results <- function(
 ### feature_combination_1
 generate_hst_optics_cluster_results(
   combination_order = 1,
+  parameter_order = 1,
   eps_s = 1.5,
   eps_t = 1.5,
   weight_s = 1,
@@ -261,6 +283,7 @@ generate_hst_optics_cluster_results(
 ### feature_combination_2
 generate_hst_optics_cluster_results(
   combination_order = 2,
+  parameter_order = 1,
   eps_s = 1.5,
   eps_t = 1.5,
   weight_s = 1,
@@ -273,6 +296,7 @@ generate_hst_optics_cluster_results(
 ### feature_combination_3
 generate_hst_optics_cluster_results(
   combination_order = 3,
+  parameter_order = 1,
   eps_s = 1.5,
   eps_t = 1.5,
   weight_s = 1,
@@ -285,6 +309,7 @@ generate_hst_optics_cluster_results(
 ### feature_combination_4
 generate_hst_optics_cluster_results(
   combination_order = 4,
+  parameter_order = 1,
   eps_s = 1.5,
   eps_t = 1.5,
   weight_s = 1,
@@ -297,6 +322,7 @@ generate_hst_optics_cluster_results(
 ### feature_combination_5
 generate_hst_optics_cluster_results(
   combination_order = 5,
+  parameter_order = 1,
   eps_s = 1.5,
   eps_t = 1.5,
   weight_s = 1,
@@ -309,6 +335,7 @@ generate_hst_optics_cluster_results(
 ### feature_combination_6
 generate_hst_optics_cluster_results(
   combination_order = 6,
+  parameter_order = 1,
   eps_s = 1.5,
   eps_t = 1.5,
   weight_s = 1,
@@ -321,6 +348,7 @@ generate_hst_optics_cluster_results(
 ### feature_combination_7
 generate_hst_optics_cluster_results(
   combination_order = 7,
+  parameter_order = 1,
   eps_s = 1.5,
   eps_t = 1.5,
   weight_s = 1,

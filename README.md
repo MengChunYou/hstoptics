@@ -80,6 +80,22 @@ root/
  │    │          ├── ...
  │    │          └── feature_combination_7_parameters.csv
  │    │
+ │    ├── reachability_plots/ (WIP, only for proposed method)
+ │    │    ├── 2d/
+ │    │    │    ├── feature_combination_1/
+ │    │    │    │    ├── parameter_1_reachability_plot.png
+ │    │    │    │    ├── parameter_2_reachability_plot.png
+ │    │    │    │    ├── ...
+ │    │    │    │    └── parameter_9_reachability_plot.png
+ │    │    │    │    
+ │    │    │    ├── feature_combination_2/
+ │    │    │    │    └── ...
+ │    │    │    │
+ │    │    │    └── ...
+ │    │    │
+ │    │    └── 3d/
+ │    │          └── ...
+ │    │
  │    ├── clustering_results/ (WIP)
  │    │    ├── 2d/
  │    │    │    ├── feature_combination_1/
