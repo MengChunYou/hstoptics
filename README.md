@@ -22,19 +22,19 @@ root/
  │    ├── feature_combination_3.csv
  │    ├── feature_combination_4.csv
  │    ├── feature_combination_5.csv
- │    ├── feature_combination_6.csv (WIP)
+ │    ├── feature_combination_6.csv
  │    └── feature_combination_7.csv
  │
  ├── src/
  │    ├── common_functions.R
- │    ├── simulation.R (WIP)
+ │    ├── simulation.R
  │    ├── clustering_algorithms/
  │    │    ├── proposed_algorithm.R
  │    │    ├── stdbscan.R
  │    │    └── stkde.R (WIP)
  │    │
  │    ├── performing_clustering/
- │    │    ├── proposed_algorithm/ (WIP)
+ │    │    ├── proposed_algorithm/
  │    │    │    ├── generate_2d_cluster_results.R
  │    │    │    └── generate_3d_cluster_results.R
  │    │    │
@@ -48,49 +48,36 @@ root/
  │          ├── descriptive_statistics/
  │          │    ├── generate_2d_plots.R
  │          │    └── generate_3d_plots.R
- │          ├── cluster_plots/ (WIP)
+ │          ├── cluster_plots/
  │          │    ├── generate_2d_cluster_plots.R
  │          │    └── generate_3d_cluster_plots.R
- │          └── cluster_structures/ (WIP, only for proposed method)
- │                ├── generate_2d_tree_diagrams.R
- │                └── generate_3d_tree_diagrams.R
+ │          └── cluster_structures/
+ │                ├── generate_2d_cluster_structures.R
+ │                └── generate_3d_cluster_structures.R
  │
  ├── outputs/
  │    ├── descriptive_statistics/
  │    │    ├── 2d/
  │    │    │    ├── feature_combination_1_2d_plot.png
- │    │    │    ├── feature_combination_2_2d_plot.png
  │    │    │    └── ...
  │    │    │
  │    │    └── 3d/
  │    │          ├── feature_combination_1_3d_plot.png
- │    │          ├── feature_combination_2_3d_plot.png
  │    │          └── ...
  │    │
  │    ├── parameters/ (WIP, only for proposed method)
  │    │    ├── 2d/
  │    │    │    ├── feature_combination_1_parameters.csv
- │    │    │    ├── feature_combination_2_parameters.csv
- │    │    │    ├── ...
- │    │    │    └── feature_combination_7_parameters.csv
+ │    │    │    └── ...
  │    │    │
  │    │    └── 3d/
- │    │          ├── feature_combination_1_parameters.csv
- │    │          ├── feature_combination_2_parameters.csv
- │    │          ├── ...
- │    │          └── feature_combination_7_parameters.csv
+ │    │          └── ...
  │    │
- │    ├── reachability_plots/ (WIP, only for proposed method)
+ │    ├── reachability_plots/
  │    │    ├── 2d/
  │    │    │    ├── feature_combination_1/
  │    │    │    │    ├── parameter_1_reachability_plot.png
- │    │    │    │    ├── parameter_2_reachability_plot.png
- │    │    │    │    ├── ...
- │    │    │    │    └── parameter_9_reachability_plot.png
- │    │    │    │    
- │    │    │    ├── feature_combination_2/
  │    │    │    │    └── ...
- │    │    │    │
  │    │    │    └── ...
  │    │    │
  │    │    └── 3d/
@@ -100,16 +87,14 @@ root/
  │    │    ├── 2d/
  │    │    │    ├── feature_combination_1/
  │    │    │    │    ├── proposed_algorithm/
- │    │    │    │    │    ├── parameter_1_cluster_results.csv
- │    │    │    │    │    ├── parameter_2_cluster_results.csv
- │    │    │    │    │    ├── ...
- │    │    │    │    │    └── parameter_9_cluster_results.csv
+ │    │    │    │    │    ├── parameter_1_cluster_result.csv
+ │    │    │    │    │    └── ...
  │    │    │    │    │ 
  │    │    │    │    ├── stdbscan/
- │    │    │    │    │    └── parameter_1_cluster_results.csv
+ │    │    │    │    │    └── parameter_1_cluster_result.csv
  │    │    │    │    │ 
  │    │    │    │    └── stkde/
- │    │    │    │          └── parameter_1_cluster_results.csv
+ │    │    │    │          └── parameter_1_cluster_result.csv
  │    │    │    │    
  │    │    │    ├── feature_combination_2/
  │    │    │    │    
@@ -123,56 +108,38 @@ root/
  │    │    │    ├── feature_combination_1/
  │    │    │    │    ├── proposed_algorithm/
  │    │    │    │    │    ├── parameter_1_cluster_2d_plot.png
- │    │    │    │    │    ├── parameter_2_cluster_2d_plot.png
- │    │    │    │    │    ├── ...
- │    │    │    │    │    └── parameter_9_cluster_2d_plot.png
+ │    │    │    │    │    └── ...
  │    │    │    │    │ 
  │    │    │    │    ├── stdbscan/
  │    │    │    │    │    └── parameter_1_cluster_2d_plot.png
  │    │    │    │    │ 
  │    │    │    │    └── stkde/
  │    │    │    │          └── parameter_1_cluster_2d_plot.png
- │    │    │    │    
- │    │    │    ├── feature_combination_2/
- │    │    │    │    
  │    │    │    └── ...
  │    │    │
  │    │    └── 3d/
  │    │          ├── feature_combination_1/
  │    │          │    ├── proposed_algorithm/
  │    │          │    │    ├── parameter_1_cluster_3d_plot.png
- │    │          │    │    ├── parameter_2_cluster_3d_plot.png
- │    │          │    │    ├── ...
- │    │          │    │    └── parameter_9_cluster_3d_plot.png
+ │    │          │    │    └── ...
  │    │          │    │ 
  │    │          │    ├── stdbscan/
  │    │          │    │    └── parameter_1_cluster_3d_plot.png
  │    │          │    │ 
  │    │          │    └── stkde/
  │    │          │          └── parameter_1_cluster_3d_plot.png
- │    │          │    
- │    │          ├── feature_combination_2/
- │    │          │    
  │    │          └── ...
  │    │
- │    └── cluster_structures/ (WIP, only for proposed method)
+ │    └── cluster_structures/
  │          ├── 2d/
  │          │    ├── feature_combination_1/
  │          │    │    ├── edge_lists/
  │          │    │    │    ├── parameter_1_cluster_edge_list.csv
- │          │    │    │    ├── parameter_2_cluster_edge_list.csv
- │          │    │    │    ├── ...
- │          │    │    │    └── parameter_9_cluster_edge_list.csv
+ │          │    │    │    └── ...
  │          │    │    │
  │          │    │    └── tree_diagrams/
- │          │    │          ├── parameter_1_cluster_edge_list.csv
- │          │    │          ├── parameter_2_cluster_edge_list.csv
- │          │    │          ├── ...
- │          │    │          └── parameter_9_cluster_edge_list.csv
- │          │    │
- │          │    ├── feature_combination_2/
- │          │    │    └── ...
- │          │    │    
+ │          │    │          ├── parameter_1_cluster_tree_diagram.png
+ │          │    │          └── ...
  │          │    └── ...
  │          │
  │          └── 3d/
@@ -192,10 +159,13 @@ root/
 ## Required Packages
 
 - dplyr
-- MASS
 - sf
 - tidyr
+- rgl
 - ggplot2
+- igraph
+- MASS
+- scatterplot3d
 
 Download the required packages by running the following command in R:
 

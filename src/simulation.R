@@ -1,7 +1,6 @@
 # simulation.R
 
 library(MASS)
-library(rgl)
 
 wirte_simulated_data = function(simulated_data, file_order){
   

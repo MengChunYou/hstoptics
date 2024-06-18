@@ -1,8 +1,5 @@
 # generate_3d_cluster_results.R
 
-library(rgl)
-library(magrittr)
-
 ## generate_stdbscan_cluster_results function
 generate_stdbscan_cluster_results <- function(
   combination_order,

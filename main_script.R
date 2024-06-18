@@ -42,12 +42,12 @@ source("src/visualization/cluster_plots/generate_cluster_2d_plots.R")
 ## 5-2: Three dimensions
 source("src/visualization/cluster_plots/generate_cluster_3d_plots.R")
 
-# 6: Generate tree diagrams
+# 6: Generate cluster structures
 
 ## 6-1: Two dimensions
-source("src/visualization/cluster_structures/generate_2d_tree_diagrams.R")
+source("src/visualization/cluster_structures/generate_2d_cluster_structures.R")
 
 ## 6-2: Three dimensions
-source("src/visualization/cluster_structures/generate_3d_tree_diagrams.R")
+source("src/visualization/cluster_structures/generate_3d_cluster_structures.R")
 
 # end of main_script.R

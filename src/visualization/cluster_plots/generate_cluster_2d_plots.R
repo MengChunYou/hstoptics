@@ -8,7 +8,7 @@ generate_cluster_2d_plot = function(
   algorithm_name) {
   
   # Read the CSV file
-  simulated_data <- read_cluster_results(
+  simulated_data <- read_cluster_result(
     algorithm_name = algorithm_name,
     combination_order = combination_order,
     parameter_order = parameter_order,
