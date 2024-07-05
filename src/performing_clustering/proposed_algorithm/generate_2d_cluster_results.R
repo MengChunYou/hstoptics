@@ -40,7 +40,7 @@ generate_hst_optics_cluster_results <- function(
   hst_optics_result,
   combination_order,
   parameter_order,
-  Xi,
+  diff,
   window_size){
   
   # Read simulated data
@@ -66,8 +66,8 @@ generate_hst_optics_cluster_results <- function(
     return()
   }
   
-  # Identify location of faults based on given parameter Xi and window_size
-  find_faults <- function(hst_optics_result, Xi, window_size){
+  # Identify location of faults based on given parameter diff and window_size
+  find_faults <- function(hst_optics_result, diff, window_size){
     
     # Initailize
     faults <- rep(0, times = nrow(hst_optics_result))
@@ -88,13 +88,13 @@ generate_hst_optics_cluster_results <- function(
       
       # Find nearest order that fit condition
       diffs <- hst_optics_result$reach_score[window_start:window_end] - hst_optics_result$reach_score[ii]
-      nearest_order <- (which((diffs < (-Xi)) | (diffs > (Xi))) + ii)[1]
+      nearest_order <- (which((diffs < (-diff)) | (diffs > (diff))) + ii)[1]
       
       if (is.na(nearest_order)) {
         current_slope <- 0
       } else {
         # update largest_start_order or smalleast_end_order
-        current_slope <- diffs[which((diffs < (-Xi)) | (diffs > (Xi)))[1]] / (nearest_order - ii)
+        current_slope <- diffs[which((diffs < (-diff)) | (diffs > (diff)))[1]] / (nearest_order - ii)
       }
       
       if (length(commandArgs(trailingOnly = TRUE)) == 0) {
@@ -141,7 +141,7 @@ generate_hst_optics_cluster_results <- function(
     }
     return(faults)
   }
-  faults <- find_faults(hst_optics_result, Xi, window_size)
+  faults <- find_faults(hst_optics_result, diff, window_size)
   
   # Plot when the script is executed directly
   if (length(commandArgs(trailingOnly = TRUE)) == 0) {
@@ -254,8 +254,8 @@ generate_hst_optics_cluster_results <- function(
   write_cluster_results(
     cluster_results,
     algorithm_name = "proposed_algorithm",
-    combination_order = combination_order,
-    parameter_order = 1,
+    combination_order,
+    parameter_order,
     dim = 2)
 }
 
@@ -275,7 +275,7 @@ generate_hst_optics_cluster_results(
   hst_optics_result,
   combination_order = 1,
   parameter_order = 1,
-  Xi = 0.4,
+  diff = 0.4,
   window_size = 500
 )
 
@@ -293,9 +293,24 @@ generate_hst_optics_cluster_results(
   hst_optics_result,
   combination_order = 2,
   parameter_order = 1,
-  Xi = 0.4,
+  diff = 0.4,
   window_size = 500
 )
+
+parameters_df <- read_parameters(combination_order=2, dim=2)
+parameter_order <- 1
+for (i in 1:3) {
+  for (j in 1:3) {
+    parameter_order <- parameter_order + 1
+    generate_hst_optics_cluster_results(
+      hst_optics_result,
+      combination_order=2,
+      parameter_order,
+      diff=parameters_df[i, 'diff'],
+      window_size=parameters_df[j, 'window_size']
+    )
+  }
+}
 
 ### feature_combination_3
 hst_optics_result <- generate_hst_optics_result(
@@ -311,9 +326,24 @@ generate_hst_optics_cluster_results(
   hst_optics_result,
   combination_order = 3,
   parameter_order = 1,
-  Xi = 0.4,
+  diff = 0.4,
   window_size = 500
 )
+
+parameters_df <- read_parameters(combination_order=3, dim=2)
+parameter_order <- 1
+for (i in 1:3) {
+  for (j in 1:3) {
+    parameter_order <- parameter_order + 1
+    generate_hst_optics_cluster_results(
+      hst_optics_result,
+      combination_order=3,
+      parameter_order,
+      diff=parameters_df[i, 'diff'],
+      window_size=parameters_df[j, 'window_size']
+    )
+  }
+}
 
 ### feature_combination_4
 hst_optics_result <- generate_hst_optics_result(
@@ -329,9 +359,24 @@ generate_hst_optics_cluster_results(
   hst_optics_result,
   combination_order = 4,
   parameter_order = 1,
-  Xi = 0.3,
+  diff = 0.3,
   window_size = 500
 )
+
+parameters_df <- read_parameters(combination_order=4, dim=2)
+parameter_order <- 1
+for (i in 1:3) {
+  for (j in 1:3) {
+    parameter_order <- parameter_order + 1
+    generate_hst_optics_cluster_results(
+      hst_optics_result,
+      combination_order=4,
+      parameter_order,
+      diff=parameters_df[i, 'diff'],
+      window_size=parameters_df[j, 'window_size']
+    )
+  }
+}
 
 ### feature_combination_5
 hst_optics_result <- generate_hst_optics_result(
@@ -347,9 +392,24 @@ generate_hst_optics_cluster_results(
   hst_optics_result,
   combination_order = 5,
   parameter_order = 1,
-  Xi = 0.4,
+  diff = 0.4,
   window_size = 500
 )
+
+parameters_df <- read_parameters(combination_order=5, dim=2)
+parameter_order <- 1
+for (i in 1:3) {
+  for (j in 1:3) {
+    parameter_order <- parameter_order + 1
+    generate_hst_optics_cluster_results(
+      hst_optics_result,
+      combination_order=5,
+      parameter_order,
+      diff=parameters_df[i, 'diff'],
+      window_size=parameters_df[j, 'window_size']
+    )
+  }
+}
 
 ### feature_combination_6
 hst_optics_result <- generate_hst_optics_result(
@@ -365,9 +425,24 @@ generate_hst_optics_cluster_results(
   hst_optics_result,
   combination_order = 6,
   parameter_order = 1,
-  Xi = 0.24,
+  diff = 0.24,
   window_size = 800
 )
+
+parameters_df <- read_parameters(combination_order=6, dim=2)
+parameter_order <- 1
+for (i in 1:3) {
+  for (j in 1:3) {
+    parameter_order <- parameter_order + 1
+    generate_hst_optics_cluster_results(
+      hst_optics_result,
+      combination_order=6,
+      parameter_order,
+      diff=parameters_df[i, 'diff'],
+      window_size=parameters_df[j, 'window_size']
+    )
+  }
+}
 
 ### feature_combination_7
 hst_optics_result <- generate_hst_optics_result(
@@ -383,6 +458,22 @@ generate_hst_optics_cluster_results(
   hst_optics_result,
   combination_order = 7,
   parameter_order = 1,
-  Xi = 0.26,
+  diff = 0.26,
   window_size = 410
 )
+
+parameters_df <- read_parameters(combination_order=7, dim=2)
+parameter_order <- 1
+for (i in 1:3) {
+  for (j in 1:3) {
+    parameter_order <- parameter_order + 1
+    generate_hst_optics_cluster_results(
+      hst_optics_result,
+      combination_order=7,
+      parameter_order,
+      diff=parameters_df[i, 'diff'],
+      window_size=parameters_df[j, 'window_size']
+    )
+  }
+}
+

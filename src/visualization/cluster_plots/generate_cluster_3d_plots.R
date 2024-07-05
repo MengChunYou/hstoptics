@@ -1,4 +1,5 @@
 # generate_cluster_3d_plots.R
+dim <- 3
 
 library(scatterplot3d)  
 
@@ -12,7 +13,7 @@ generate_cluster_3d_plot = function(
     algorithm_name = algorithm_name,
     combination_order = combination_order,
     parameter_order = parameter_order,
-    dim = 3)
+    dim = dim)
   
   # Set plotting parameters
   plot_color = c(rgb(0.8,0.8,0.8), rgb(0,0,1,0.2), rgb(0,1,0,0.2), rgb(1,0,0,0.2))
@@ -25,7 +26,7 @@ generate_cluster_3d_plot = function(
   
   # Open a PNG device for graphics output
   output_name <- paste(
-    "outputs/cluster_plots/3d/",
+    "outputs/cluster_plots/", dim, "d/",
     "feature_combination_",
     combination_order,
     "/",
@@ -55,17 +56,30 @@ generate_cluster_3d_plot = function(
 }
 
 ## generate proposed_algorithm cluster 3d plot
-for (order in 1:7) {
-  generate_cluster_3d_plot(
-    combination_order = order,
-    parameter_order = 1,
-    algorithm_name = "proposed_algorithm")
+for (combination_order in 1:7) {
+  
+  # Get parameter orders
+  cluster_results_dir <- list.files(paste(
+    'outputs/clustering_results/',
+    dim, 'd/',
+    'feature_combination_', combination_order, 
+    '/proposed_algorithm',
+    sep = ''
+  ))
+  parameter_orders <- as.numeric(gsub("[^0-9]", "", cluster_results_dir))
+  
+  for (parameter_order in parameter_orders) {
+    generate_cluster_3d_plot(
+      combination_order,
+      parameter_order,
+      algorithm_name = "proposed_algorithm")
+  }
 }
 
 ## generate stdbscan cluster 3d plot
-for (order in 1:7) {
+for (combination_order in 1:7) {
   generate_cluster_3d_plot(
-    combination_order = order,
-    parameter_order = 1,
-    algorithm_name = "stdbscan")
+    combination_order,
+    parameter_order=1,
+    algorithm_name="stdbscan")
 }

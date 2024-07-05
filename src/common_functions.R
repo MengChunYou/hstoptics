@@ -273,3 +273,18 @@ write_parameters <- function(
   
   message(paste("write", output_csv_dir))
 }
+
+read_parameters <- function(
+  combination_order,
+  dim) {
+  
+  # This is a function to read parameters for sensitivity analysis
+  file_name <- paste(
+    "outputs/parameters/",
+    dim,
+    "d/feature_combination_", combination_order, "_parameters.csv",
+    sep = ""
+  )
+  parameters_df <- read.csv(file_name)
+  return(parameters_df)
+}

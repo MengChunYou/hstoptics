@@ -18,7 +18,7 @@ generate_stdbscan_cluster_results <- function(
     mutate(cluster = results$cluster)
   
   # Write cluster results 
-  wirte_cluster_results(
+  write_cluster_results(
     cluster_results,
     algorithm_name = "stdbscan",
     combination_order = combination_order,

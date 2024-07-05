@@ -65,7 +65,7 @@ root/
  │    │          ├── feature_combination_1_3d_plot.png
  │    │          └── ...
  │    │
- │    ├── parameters/ (WIP, only for proposed method)
+ │    ├── parameters/
  │    │    ├── 2d/
  │    │    │    ├── feature_combination_1_parameters.csv
  │    │    │    └── ...
@@ -83,7 +83,7 @@ root/
  │    │    └── 3d/
  │    │          └── ...
  │    │
- │    ├── clustering_results/ (WIP)
+ │    ├── clustering_results/
  │    │    ├── 2d/
  │    │    │    ├── feature_combination_1/
  │    │    │    │    ├── proposed_algorithm/
@@ -93,7 +93,7 @@ root/
  │    │    │    │    ├── stdbscan/
  │    │    │    │    │    └── parameter_1_cluster_result.csv
  │    │    │    │    │ 
- │    │    │    │    └── stkde/
+ │    │    │    │    └── stkde/ (WIP)
  │    │    │    │          └── parameter_1_cluster_result.csv
  │    │    │    │    
  │    │    │    ├── feature_combination_2/
@@ -103,7 +103,7 @@ root/
  │    │    └── 3d/
  │    │          └── ...
  │    │     
- │    ├── cluster_plots/ (WIP)
+ │    ├── cluster_plots/
  │    │    ├── 2d/
  │    │    │    ├── feature_combination_1/
  │    │    │    │    ├── proposed_algorithm/
@@ -113,7 +113,7 @@ root/
  │    │    │    │    ├── stdbscan/
  │    │    │    │    │    └── parameter_1_cluster_2d_plot.png
  │    │    │    │    │ 
- │    │    │    │    └── stkde/
+ │    │    │    │    └── stkde/ (WIP)
  │    │    │    │          └── parameter_1_cluster_2d_plot.png
  │    │    │    └── ...
  │    │    │
@@ -126,7 +126,7 @@ root/
  │    │          │    ├── stdbscan/
  │    │          │    │    └── parameter_1_cluster_3d_plot.png
  │    │          │    │ 
- │    │          │    └── stkde/
+ │    │          │    └── stkde/ (WIP)
  │    │          │          └── parameter_1_cluster_3d_plot.png
  │    │          └── ...
  │    │
