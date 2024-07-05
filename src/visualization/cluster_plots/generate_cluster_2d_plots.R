@@ -16,7 +16,11 @@ generate_cluster_2d_plot = function(
     dim = dim)
   
   # Set plotting parameters
-  plot_color = c(rgb(0.8,0.8,0.8), rgb(0,0,1,0.2), rgb(0,1,0,0.2), rgb(1,0,0,0.2))
+  plot_color <- c(
+    rgb(0.8, 0.8, 0.8, 0.2), rgb(0, 0, 1, 0.2), rgb(0, 1, 0, 0.2), rgb(1, 0, 0, 0.2), 
+    rgb(1, 1, 0, 0.2), rgb(1, 0, 1, 0.2), rgb(0, 1, 1, 0.2), rgb(0.5, 0.5, 0.5, 0.2), 
+    rgb(0.5, 0, 0, 0.2), rgb(0, 0.5, 0, 0.2)
+  )
   plot_lim = 10
   
   # Open a PNG device for graphics output
