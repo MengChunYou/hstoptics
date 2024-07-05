@@ -16,7 +16,7 @@ read_simulated_data <- function(combination_order){
   return(simulated_data)
 }
 
-wirte_cluster_results <- function(
+write_cluster_results <- function(
   cluster_results,
   algorithm_name,
   combination_order,
@@ -217,4 +217,59 @@ write_tree_diagram <- function(
   dev.off()
   
   message(paste("write", output_png_dir))
+}
+
+generate_reachability_plot = function(hst_optics_result){
+  
+  # This is a function to generate reachability plot
+  replace(hst_optics_result$reach_score, hst_optics_result$reach_score == Inf, NA) %>% 
+    ifelse(is.na(.), max(., na.rm = T) * 1.1, .) %>% 
+    plot(., type = "h", ylab = "Reachability scores", xlab = "Order",
+         col = ifelse(. == max(.), "lightgray", "black"))
+}
+
+write_reachability_plot <- function(
+  hst_optics_result,
+  faults,
+  combination_order,
+  parameter_order,
+  dim
+) {
+  output_png_dir <- paste(
+    "outputs/reachability_plots/", dim, "d/",
+    "feature_combination_", combination_order,
+    "/parameter_", parameter_order,
+    "_reachability_plot.png",
+    sep = ""
+  )
+  
+  # Open a PNG device for graphics output
+  open_png(output_png_dir)
+  
+  # Create reachability plot
+  generate_reachability_plot(hst_optics_result)
+  abline(v = which(faults==1), col = "red")
+  abline(v = which(faults==-1), col = "blue")
+  
+  # Close the PNG device
+  dev.off()
+  
+  message(paste("write", output_png_dir))
+}
+
+write_parameters <- function(
+  parameters_df,
+  combination_order,
+  dim) {
+  
+  # This is a function to write parameters for sensitivity analysis
+  output_csv_dir <- paste(
+    "outputs/parameters/",
+    dim,
+    "d/feature_combination_", combination_order, "_parameters.csv",
+    sep = ""
+  )
+  write.csv(parameters_df, file = output_csv_dir, row.names = FALSE)
+  
+  message(paste("write", output_csv_dir))
 }

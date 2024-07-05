@@ -1,16 +1,13 @@
 # generate_3d_cluster_results.R
 
-## generate_hst_optics_cluster_results function
-generate_hst_optics_cluster_results <- function(
+## generate_hst_optics_result function
+generate_hst_optics_result <- function(
   combination_order,
-  parameter_order,
   eps_s,
   eps_t,
   weight_s=1,
   weight_t=1,
-  min_pts,
-  Xi,
-  window_size){
+  min_pts){
   
   # Read simulated data
   simulated_data <- read_simulated_data(combination_order)
@@ -25,15 +22,30 @@ generate_hst_optics_cluster_results <- function(
     weight_t = weight_t,
     min_pts = min_pts)
   
-  # Get reach score summary when the script is executed directly
-  if (length(commandArgs(trailingOnly = TRUE)) == 0) {
-    cluster_points_reach_score <- hst_optics_result$reach_score %>% .[is.finite(.)]
-    print(cluster_points_reach_score %>% summary())
-    print('IQR:')
-    print(cluster_points_reach_score %>% IQR())
-    print('sd:')
-    print(cluster_points_reach_score %>% sd())
-  }
+  # Obtain parameters for sensitivity analysis.
+  cluster_points_reach_score <- hst_optics_result$reach_score %>% .[is.finite(.)]
+  parameters_df <- data.frame(
+    `window_size` = ceiling(c(0.2, 0.3, 0.4) * length(cluster_points_reach_score)),
+    `diff` = c(0.5, 1, 2) * sd(cluster_points_reach_score)
+  )
+  
+  # Write the data frame to a CSV file
+  write_parameters(parameters_df, combination_order, dim=3)
+  
+  return(hst_optics_result)
+}
+
+## generate_hst_optics_cluster_results function
+generate_hst_optics_cluster_results <- function(
+  hst_optics_result,
+  combination_order,
+  parameter_order,
+  Xi,
+  window_size){
+  
+  # Read simulated data
+  simulated_data <- read_simulated_data(combination_order)
+
   
   # Early return if there is no finite value
   if(all(hst_optics_result$reach_score %in% c(Inf, -Inf))) {
@@ -43,25 +55,18 @@ generate_hst_optics_cluster_results <- function(
       mutate(cluster = 0)
       
     # Write cluster results 
-    wirte_cluster_results(
+    write_cluster_results(
       cluster_results,
-      algorithm_name = "proposed_algorithm",
-      combination_order = combination_order,
-      parameter_order = parameter_order,
-      dim = 3)
+      algorithm_name="proposed_algorithm",
+      combination_order,
+      parameter_order,
+      dim=3
+    )
     
     return()
   }
   
-  # Generate reachability plot when the script is executed directly
-  generate_reachability_plot = function(hst_optics_result){
-    replace(hst_optics_result$reach_score, hst_optics_result$reach_score == Inf, NA) %>% 
-      ifelse(is.na(.), max(., na.rm = T) * 1.1, .) %>% 
-      plot(., type = "h", ylab = "Reachability scores", xlab = "Order",
-           col = ifelse(. == max(.), "lightgray", "black"))
-  }
-  
-  # Identify location of faults based on given parameter Xi and window_size
+    # Identify location of faults based on given parameter Xi and window_size
   find_faults <- function(hst_optics_result, Xi, window_size){
     
     # Initailize
@@ -145,25 +150,14 @@ generate_hst_optics_cluster_results <- function(
     abline(v = which(faults==-1), col = "blue")
   }
   
-  # Open a PNG device for graphics output
-  output_name <- paste(
-    "outputs/reachability_plots/3d/",
-    "feature_combination_", combination_order,
-    "/parameter_", parameter_order,
-    "_reachability_plot.png",
-    sep = ""
+  # Write reachability plot
+  write_reachability_plot(
+    hst_optics_result,
+    faults,
+    combination_order,
+    parameter_order,
+    dim=3
   )
-  open_png(output_name)
-  
-  # Create reachability plot
-  generate_reachability_plot(hst_optics_result)
-  abline(v = which(faults==1), col = "red")
-  abline(v = which(faults==-1), col = "blue")
-  
-  # Close the PNG device
-  dev.off()
-  
-  message(paste("write", output_name))
   
   # Identify levels for each point
   find_levels <- function(faults, hst_optics_result){
@@ -257,7 +251,7 @@ generate_hst_optics_cluster_results <- function(
   cluster_results <- find_clusters(levels, hst_optics_result)
   
   # Write cluster results 
-  wirte_cluster_results(
+  write_cluster_results(
     cluster_results,
     algorithm_name = "proposed_algorithm",
     combination_order = combination_order,
@@ -268,92 +262,127 @@ generate_hst_optics_cluster_results <- function(
 ## generate cluster results
 
 ### feature_combination_1
-generate_hst_optics_cluster_results(
+hst_optics_result <- generate_hst_optics_result(
   combination_order = 1,
-  parameter_order = 1,
   eps_s = 1.5,
   eps_t = 1.5,
   weight_s = 1,
   weight_t = 1,
-  min_pts = 100,
+  min_pts = 100
+)
+
+generate_hst_optics_cluster_results(
+  hst_optics_result,
+  combination_order = 1,
+  parameter_order = 1,
   Xi = 0.4,
   window_size = 500
 )
 
 ### feature_combination_2
-generate_hst_optics_cluster_results(
+hst_optics_result <- generate_hst_optics_result(
   combination_order = 2,
-  parameter_order = 1,
   eps_s = 1.5,
   eps_t = 1.5,
   weight_s = 1,
   weight_t = 1,
-  min_pts = 100,
+  min_pts = 100
+)
+
+generate_hst_optics_cluster_results(
+  hst_optics_result,
+  combination_order = 2,
+  parameter_order = 1,
   Xi = 0.4,
   window_size = 500
 )
 
 ### feature_combination_3
-generate_hst_optics_cluster_results(
+hst_optics_result <- generate_hst_optics_result(
   combination_order = 3,
-  parameter_order = 1,
   eps_s = 1.5,
   eps_t = 1.5,
   weight_s = 1,
   weight_t = 1,
-  min_pts = 100,
+  min_pts = 100
+)
+
+generate_hst_optics_cluster_results(
+  hst_optics_result,
+  combination_order = 3,
+  parameter_order = 1,
   Xi = 0.4,
   window_size = 500
 )
 
 ### feature_combination_4
-generate_hst_optics_cluster_results(
+hst_optics_result <- generate_hst_optics_result(
   combination_order = 4,
-  parameter_order = 1,
   eps_s = 1.2,
   eps_t = 1.2,
   weight_s = 1,
   weight_t = 1,
-  min_pts = 50,
+  min_pts = 50
+)
+
+generate_hst_optics_cluster_results(
+  hst_optics_result,
+  combination_order = 4,
+  parameter_order = 1,
   Xi = 0.4,
   window_size = 500
 )
 
 ### feature_combination_5
-generate_hst_optics_cluster_results(
+hst_optics_result <- generate_hst_optics_result(
   combination_order = 5,
-  parameter_order = 1,
   eps_s = 1.2,
   eps_t = 1.2,
   weight_s = 1,
   weight_t = 1,
-  min_pts = 50,
+  min_pts = 50
+)
+
+generate_hst_optics_cluster_results(
+  hst_optics_result,
+  combination_order = 5,
+  parameter_order = 1,
   Xi = 0.4,
   window_size = 400
 )
 
 ### feature_combination_6
-generate_hst_optics_cluster_results(
+hst_optics_result <- generate_hst_optics_result(
   combination_order = 6,
-  parameter_order = 1,
   eps_s = 1.2,
   eps_t = 1.2,
   weight_s = 1,
   weight_t = 1,
-  min_pts = 50,
+  min_pts = 50
+)
+
+generate_hst_optics_cluster_results(
+  hst_optics_result,
+  combination_order = 6,
+  parameter_order = 1,
   Xi = 0.13,
   window_size = 340
 )
 
 ### feature_combination_7
-generate_hst_optics_cluster_results(
+hst_optics_result <- generate_hst_optics_result(
   combination_order = 7,
-  parameter_order = 1,
   eps_s = 1.2,
   eps_t = 1.2,
   weight_s = 1,
   weight_t = 1,
-  min_pts = 50,
+  min_pts = 50
+)
+
+generate_hst_optics_cluster_results(
+  hst_optics_result,
+  combination_order = 7,
+  parameter_order = 1,
   Xi = 0.45,
   window_size = 500
 )
