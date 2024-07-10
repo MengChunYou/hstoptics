@@ -14,7 +14,11 @@ source("src/common_functions.R")
 source("src/simulation.R")
 
 # 2: Descriptive statistics
+
+## 2-1: Two dimensions
 source("src/visualization/descriptive_statistics/generate_2d_plots.R")
+
+## 2-2: Three dimensions
 source("src/visualization/descriptive_statistics/generate_3d_plots.R")
 
 # 3: Functions for clustering algorithms

@@ -17,7 +17,7 @@ generate_cluster_2d_plot = function(
   
   # Set plotting parameters
   plot_color <- c(
-    rgb(0.8, 0.8, 0.8, 0.2), rgb(0, 0, 1, 0.2), rgb(0, 1, 0, 0.2), rgb(1, 0, 0, 0.2), 
+    point_col, rgb(0, 0, 1, 0.2), rgb(0, 1, 0, 0.2), rgb(1, 0, 0, 0.2), 
     rgb(1, 1, 0, 0.2), rgb(1, 0, 1, 0.2), rgb(0, 1, 1, 0.2), rgb(0.5, 0.5, 0.5, 0.2), 
     rgb(0.5, 0, 0, 0.2), rgb(0, 0.5, 0, 0.2)
   )
@@ -41,7 +41,7 @@ generate_cluster_2d_plot = function(
   plot_2d <- ggplot(simulated_data, aes(x = x, y = y)) +
     geom_point(
       colour = plot_color[simulated_data$cluster + 1], 
-      size = 3, 
+      size = 2, 
       pch = 16) +
     theme_minimal() +
     xlim(lim) +

@@ -17,7 +17,7 @@ generate_cluster_3d_plot = function(
   
   # Set plotting parameters
   plot_color <- c(
-    rgb(0.8, 0.8, 0.8, 0.2), rgb(0, 0, 1, 0.2), rgb(0, 1, 0, 0.2), rgb(1, 0, 0, 0.2), 
+    point_col, rgb(0, 0, 1, 0.2), rgb(0, 1, 0, 0.2), rgb(1, 0, 0, 0.2), 
     rgb(1, 1, 0, 0.2), rgb(1, 0, 1, 0.2), rgb(0, 1, 1, 0.2), rgb(0.5, 0.5, 0.5, 0.2), 
     rgb(0.5, 0, 0, 0.2), rgb(0, 0.5, 0, 0.2)
   )
@@ -46,12 +46,12 @@ generate_cluster_3d_plot = function(
   scatterplot3d(
     simulated_data_w_projection[, 1:3], 
     pch = 16, asp = T, 
-    color = c(rep(rgb(0.8,0.8,0.8,0.2), times = nrow(simulated_data)), 
+    color = c(rep(projection_col, times = nrow(simulated_data)), 
               plot_color[simulated_data$cluster + 1]), 
     xlim = c(-1 * plot_lim, plot_lim), 
     ylim = c(-1 * plot_lim, plot_lim), 
     zlim = c(-1 * plot_lim, plot_lim), 
-    cex.symbols = 1.5, cex.axis = 1.5, cex.lab = 2)
+    cex.symbols = 0.6, cex.axis = 1.5, cex.lab = 2)
   
   # Close the PNG device
   dev.off()

@@ -13,12 +13,6 @@ for (ii in 1:7) {
       ".csv",
       sep = ""))
   
-  # Set plotting parameters
-  plot_lim <- 10
-  point_col <- rgb(0.3, 0.3, 0.3, 0.2)
-  projection_col <- rgb(0.8,0.8,0.8,0.2)
-  lim <- c(-1 * plot_lim, plot_lim)
-  
   # Generate simulated data with projection
   simulated_data_w_projection <- simulated_data %>% 
     rbind(., simulated_data)
@@ -41,7 +35,7 @@ for (ii in 1:7) {
                 xlim = lim, 
                 ylim = lim, 
                 zlim = lim, 
-                cex.symbols = 1.5, cex.axis = 1.5, cex.lab = 1.5)
+                cex.symbols = 0.6, cex.axis = 1.5, cex.lab = 1.5)
   
   # Close the PNG device
   dev.off()

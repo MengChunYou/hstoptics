@@ -24,7 +24,7 @@ for (ii in 1:7) {
   
   # Create a 2D scatter plot
   plot_2d <- ggplot(simulated_data, aes(x = x, y = y)) +
-    geom_point(colour = point_col, size = 3, pch = 16) +
+    geom_point(colour = point_col, size = 2, pch = 16) +
     theme_minimal() +
     xlim(lim) +
     ylim(lim) +
