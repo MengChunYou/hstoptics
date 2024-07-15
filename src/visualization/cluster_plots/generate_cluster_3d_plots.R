@@ -51,7 +51,9 @@ generate_cluster_3d_plot = function(
     xlim = c(-1 * plot_lim, plot_lim), 
     ylim = c(-1 * plot_lim, plot_lim), 
     zlim = c(-1 * plot_lim, plot_lim), 
-    cex.symbols = 0.6, cex.axis = 1.5, cex.lab = 2)
+    cex.symbols = rep(c(0.6, 1), 
+                      each = nrow(simulated_data)), 
+    cex.axis = 1.5, cex.lab = 2)
   
   # Close the PNG device
   dev.off()

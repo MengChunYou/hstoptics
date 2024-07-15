@@ -28,14 +28,17 @@ for (ii in 1:7) {
   ))
   
   # Create a 3D scatter plot
-  scatterplot3d(simulated_data_w_projection, 
-                pch = 16, asp = T, 
-                color = rep(c(projection_col, point_col), 
-                              each = nrow(simulated_data)), 
-                xlim = lim, 
-                ylim = lim, 
-                zlim = lim, 
-                cex.symbols = 0.6, cex.axis = 1.5, cex.lab = 1.5)
+  scatterplot3d(
+    simulated_data_w_projection, 
+    pch = 16, asp = T, 
+    color = rep(c(projection_col, point_col), 
+                each = nrow(simulated_data)), 
+    xlim = lim, 
+    ylim = lim, 
+    zlim = lim, 
+    cex.symbols = rep(c(0.6, 1), 
+                      each = nrow(simulated_data)), 
+    cex.axis = 1.5, cex.lab = 2)
   
   # Close the PNG device
   dev.off()
