@@ -1,4 +1,5 @@
 # generate_2d_cluster_structures.R
+
 dim <- 2
 
 for (combination_order in 1:7) {

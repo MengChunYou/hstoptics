@@ -1,7 +1,6 @@
 # generate_cluster_2d_plots.R
-dim <- 2
 
-library(ggplot2)
+dim <- 2
 
 generate_cluster_2d_plot = function(
   combination_order,

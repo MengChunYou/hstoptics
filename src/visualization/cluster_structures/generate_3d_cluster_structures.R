@@ -1,4 +1,5 @@
 # generate_3d_cluster_structures.R
+
 dim <- 3
 
 for (combination_order in 1:7) {

@@ -1,7 +1,6 @@
 # generate_cluster_3d_plots.R
-dim <- 3
 
-library(scatterplot3d)  
+dim <- 3
 
 generate_cluster_3d_plot = function(
   combination_order,

@@ -1,6 +1,6 @@
 # spatio-temporal-cluster-fault-identification
 
-project description ...
+This repository contains R code, data, outputs, slides, and reports for a master's thesis titled "An OPTICS-based Algorithm for Identifying Spatio-Temporal Density Faults in Hierarchical Clustering Structures," completed in August 2024. The research introduces the HST-OPTICS algorithm, designed to detect hierarchical spatio-temporal clustering structures with density faults. All slides and reports are available in Traditional Chinese.
 
 ## Table of Contents
 
@@ -10,7 +10,7 @@ project description ...
 
 ## Project Abstract
 
-project abstract ...
+The HST-OPTICS algorithm improves upon previous spatio-temporal clustering methods by identifying density faults in hierarchical clusters. This approach reveals complete clustering structures, including density differences and hierarchical relationships previously undetectable. The algorithm relaxes the OPTICS steepness definition, allowing for flexible identification of density fault ranges. It can detect overlapping clusters with varying density, hierarchical structures where multiple clusters belong to one cluster, and clustering structures with varying spatial ranges. HST-OPTICS produces clusters with noise exclusion, an undefined total count, clear boundaries, and arbitrary shapes. Simulations have verified its effectiveness in identifying complex hierarchical spatio-temporal clustering structures. Future work could explore practical applications, the design of verification metrics, and efficiency improvements.
 
 ## Repository Structure
 
@@ -30,18 +30,14 @@ root/
  │    ├── simulation.R
  │    ├── clustering_algorithms/
  │    │    ├── proposed_algorithm.R
- │    │    ├── stdbscan.R
- │    │    └── stkde.R (WIP)
+ │    │    └── stdbscan.R
  │    │
  │    ├── performing_clustering/
  │    │    ├── proposed_algorithm/
  │    │    │    ├── generate_2d_cluster_results.R
  │    │    │    └── generate_3d_cluster_results.R
  │    │    │
- │    │    ├── stdbscan/
- │    │    │    └── ...
- │    │    │
- │    │    └── stkde/ (WIP)
+ │    │    └── stdbscan/
  │    │          └── ...
  │    │
  │    └── visualization/
@@ -90,10 +86,7 @@ root/
  │    │    │    │    │    ├── parameter_1_cluster_result.csv
  │    │    │    │    │    └── ...
  │    │    │    │    │ 
- │    │    │    │    ├── stdbscan/
- │    │    │    │    │    └── parameter_1_cluster_result.csv
- │    │    │    │    │ 
- │    │    │    │    └── stkde/ (WIP)
+ │    │    │    │    └── stdbscan/
  │    │    │    │          └── parameter_1_cluster_result.csv
  │    │    │    │    
  │    │    │    ├── feature_combination_2/
@@ -110,10 +103,7 @@ root/
  │    │    │    │    │    ├── parameter_1_cluster_2d_plot.png
  │    │    │    │    │    └── ...
  │    │    │    │    │ 
- │    │    │    │    ├── stdbscan/
- │    │    │    │    │    └── parameter_1_cluster_2d_plot.png
- │    │    │    │    │ 
- │    │    │    │    └── stkde/ (WIP)
+ │    │    │    │    └── stdbscan/
  │    │    │    │          └── parameter_1_cluster_2d_plot.png
  │    │    │    └── ...
  │    │    │
@@ -123,10 +113,7 @@ root/
  │    │          │    │    ├── parameter_1_cluster_3d_plot.png
  │    │          │    │    └── ...
  │    │          │    │ 
- │    │          │    ├── stdbscan/
- │    │          │    │    └── parameter_1_cluster_3d_plot.png
- │    │          │    │ 
- │    │          │    └── stkde/ (WIP)
+ │    │          │    └── stdbscan/
  │    │          │          └── parameter_1_cluster_3d_plot.png
  │    │          └── ...
  │    │
@@ -155,6 +142,9 @@ root/
 ```
 
 - `reports/`: ...
+- `slide/`: This directory contains presentation slide related to the tutorial.
+- `notebook/`: This directory contains the Jupyter Notebook tutorial file.
+- `output/`: This directory contains output file generated during the tutorial.
 
 ## Required Packages
 

@@ -1,7 +1,5 @@
 # generate_2d_plots.R
 
-library(ggplot2)
-
 # Loop through each file
 for (ii in 1:7) {
   
